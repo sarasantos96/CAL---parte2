@@ -2,6 +2,8 @@
 
 using namespace std;
 
+Passenger:: Passenger(){}
+
 Passenger:: Passenger(string name, int nif){
 	this->name=name;
 	this->nif=nif;

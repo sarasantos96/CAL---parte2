@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Reservation:: Reservation(int date, Passenger passenger, int price, Date arrival, string destination){
+Reservation:: Reservation(Date date, Passenger passenger, int price, Date arrival, string destination){
 	this->date=date;
 	this->passenger= passenger;
 	this->price=price;
@@ -18,11 +18,11 @@ void Reservation:: setArrival(const Date& arrival) {
 	this->arrival = arrival;
 }
 
-int Reservation:: getDate() const {
+const Date& Reservation:: getDate() const {
 	return date;
 }
 
-void Reservation:: setDate(int date) {
+void Reservation:: setDate(Date date) {
 	this->date = date;
 }
 

@@ -1,6 +1,8 @@
-#include <iostream>
+#include "Date.h"
 
 using namespace std;
+
+Date:: Date(){}
 
 Date:: Date(int day, int month, int year, int hour, int minutes){
 	this->day=day;

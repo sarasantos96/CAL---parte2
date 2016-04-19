@@ -9,6 +9,7 @@ private:
 	string name;
 	int nif;
 public:
+	Passenger();
 	Passenger(string name, int nif);
 	string getName() const;
 	void setName(const string name);

@@ -2,22 +2,24 @@
 #define SRC_RESERVATION_H_
 
 #include <iostream>
+#include "Date.h"
+#include "Passenger.h"
 
 using namespace std;
 
 class Reservation{
 private:
-	int date;
+	Date date;
 	Passenger passenger;
 	int price;
 	Date arrival;
 	string destination;
 public:
-	Reservation(int date, Passenger passenger, int price, Date arrival, string destination);
+	Reservation(Date date, Passenger passenger, int price, Date arrival, string destination);
 	const Date& getArrival() const;
 	void setArrival(const Date& arrival);
-	int getDate() const;
-	void setDate(int date);
+	const Date& getDate() const;
+	void setDate(Date date);
 	const string& getDestination() const;
 	void setDestination(const string& destination);
 	const Passenger& getPassenger() const;

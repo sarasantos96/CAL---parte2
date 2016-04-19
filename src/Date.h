@@ -1,6 +1,8 @@
 #ifndef SRC_DATE_H_
 #define SRC_DATE_H_
 
+#include <iostream>
+
 class Date{
 private:
 	int day;
@@ -9,6 +11,7 @@ private:
 	int hour;
 	int minutes;
 public:
+	Date();
 	Date(int day, int month, int year, int hour, int minutes);
 	int getDay() const;
 	void setDay(int day);
