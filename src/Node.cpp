@@ -1,39 +1,39 @@
 #include "Node.h"
 
-Node:: Node(int node_id, int lat_degree, int lon_degree,
-			int lat_rad, int lon_rad) : node_id(node_id),
+Node:: Node(int node_id, double lat_degree, double lon_degree,
+			double lat_rad, double lon_rad) : node_id(node_id),
 			lat_degree(lat_degree), lon_degree(lon_degree),
 			lat_rad(lat_rad), lon_rad(lon_rad){}
 
-int Node:: getLatDegree() const {
+double Node:: getLatDegree() const {
 	return lat_degree;
 }
 
-void Node:: setLatDegree(int latDegree) {
+void Node:: setLatDegree(double latDegree) {
 	lat_degree = latDegree;
 }
 
-int Node:: getLatRad() const {
+double Node:: getLatRad() const {
 	return lat_rad;
 }
 
-void Node:: setLatRad(int latRad) {
+void Node:: setLatRad(double latRad) {
 	lat_rad = latRad;
 }
 
-int Node:: getLonDegree() const {
+double Node:: getLonDegree() const {
 	return lon_degree;
 }
 
-void Node:: setLonDegree(int lonDegree) {
+void Node:: setLonDegree(double lonDegree) {
 	lon_degree = lonDegree;
 }
 
-int Node:: getLonRad() const {
+double Node:: getLonRad() const {
 	return lon_rad;
 }
 
-void Node:: setLonRad(int lonRad) {
+void Node:: setLonRad(double lonRad) {
 	lon_rad = lonRad;
 }
 

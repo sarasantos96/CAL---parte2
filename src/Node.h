@@ -3,25 +3,25 @@
 
 class Node{
 	int node_id;
-	int lat_degree;
-	int lon_degree;
-	int lat_rad;
-	int lon_rad;
+	double lat_degree;
+	double lon_degree;
+	double lat_rad;
+	double lon_rad;
 public:
-	Node(int node_id, int lat_degree, int lon_degree,
-			int lat_rad, int lon_rad);
+	Node(int node_id, double lat_degree, double lon_degree,
+			double lat_rad, double lon_rad);
 
-	int getLatDegree() const;
-	void setLatDegree(int latDegree);
+	double getLatDegree() const;
+	void setLatDegree(double latDegree);
 
-	int getLatRad() const;
-	void setLatRad(int latRad);
+	double getLatRad() const;
+	void setLatRad(double latRad);
 
-	int getLonDegree() const;
-	void setLonDegree(int lonDegree);
+	double getLonDegree() const;
+	void setLonDegree(double lonDegree);
 
-	int getLonRad() const;
-	void setLonRad(int lonRad);
+	double getLonRad() const;
+	void setLonRad(double lonRad);
 
 	int getNodeId() const;
 	void setNodeId(int nodeId);
