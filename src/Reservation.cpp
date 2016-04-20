@@ -2,12 +2,18 @@
 
 using namespace std;
 
+static int ID=0;
+
+Reservation:: Reservation(){}
+
 Reservation:: Reservation(Date date, Passenger passenger, int price, Date arrival, string destination){
+	this->id= ID;
 	this->date=date;
 	this->passenger= passenger;
 	this->price=price;
 	this->arrival=arrival;
 	this->destination=destination;
+	ID++;
 }
 
 const Date& Reservation:: getArrival() const {
@@ -50,3 +56,6 @@ void Reservation:: setPrice(int price) {
 	this->price = price;
 }
 
+int Reservation:: getId() const{
+	return id;
+}

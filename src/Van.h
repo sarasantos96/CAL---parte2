@@ -15,6 +15,11 @@ public:
 	void setLPlate(const string& lPlate);
 	int getPassengers() const;
 	void setPassengers(int nPassengers);
+	bool operator ==(const Van &v2){
+			if(lPlate == v2.getLPlate())
+				return true;
+			return false;
+		}
 };
 
 #endif
