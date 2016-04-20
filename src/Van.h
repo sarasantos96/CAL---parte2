@@ -10,6 +10,7 @@ private:
 	string lPlate;
 	int nPassengers;
 public:
+	Van();
 	Van(string lPlate, int nPassengers);
 	string getLPlate() const;
 	void setLPlate(const string& lPlate);

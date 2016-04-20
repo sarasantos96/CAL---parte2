@@ -2,6 +2,8 @@
 
 using namespace std;
 
+Van::Van(){};
+
 Van:: Van(string lPlate, int nPassengers){
 	this->lPlate=lPlate;
 	this->nPassengers=nPassengers;

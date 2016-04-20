@@ -32,13 +32,12 @@ bool AirShuttle:: addReservation(Reservation r){
 bool AirShuttle:: removeReservation(Reservation r){
 	int i;
 	bool exist=false;
-	for(i=0;i < reservations.size;i++){
+	for(i=0;i < reservations.size();i++){
 		if(reservations[i]== r){
 			exist=true;
 			break;
 		}
 	}
-
 	if(exist)
 		reservations.erase(reservations.begin()+i);
 	else{
@@ -59,7 +58,7 @@ bool AirShuttle:: addVan(Van v){
 bool AirShuttle:: removeVan(Van v){
 	int i;
 	bool exist=false;
-	for(i=0;i < vans.size;i++){
+	for(i=0;i < vans.size();i++){
 		if(vans[i]== v){
 			exist=true;
 			break;
