@@ -21,7 +21,8 @@ public:
 	bool removeReservation(Reservation r);
 	bool addVan(Van v);
 	bool removeVan(Van v);
-	vector<Reservation> getReservation(Date d);
+	vector<Reservation> getReservationByDate(Date &d);
+	vector<Reservation> getReservationByPassenger(Passenger p);
 
 };
 

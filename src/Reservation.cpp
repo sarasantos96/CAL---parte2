@@ -24,7 +24,7 @@ void Reservation:: setArrival(const Date& arrival) {
 	this->arrival = arrival;
 }
 
-const Date& Reservation:: getDate() const {
+const Date& Reservation:: getDate()const {
 	return date;
 }
 

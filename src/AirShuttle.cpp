@@ -74,3 +74,25 @@ bool AirShuttle:: removeVan(Van v){
 	return true;
 }
 
+vector<Reservation> AirShuttle:: getReservationByDate(Date &d){
+	vector<Reservation> r;
+
+	for(unsigned int i=0; i<reservations.size();i++){
+		Date d1= reservations[i].getDate();
+		if(d1 == d)
+			r.push_back(reservations[i]);
+	}
+
+	return r;
+}
+vector<Reservation> AirShuttle:: getReservationByPassenger(Passenger p){
+	vector<Reservation> r;
+
+	for(unsigned int i=0; i<reservations.size();i++){
+		Passenger p1= reservations[i].getPassenger();
+		if(p1 == p)
+			r.push_back(reservations[i]);
+	}
+
+	return r;
+}
