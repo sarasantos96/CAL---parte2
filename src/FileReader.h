@@ -10,14 +10,17 @@
 #include <iostream>
 
 #include "Graph.h"
+#include "Node.h"
 #include "Road.h"
 #include "Subroad.h"
 #include "Point.h"
 
 using namespace std;
 
-vector<Vertex> readNodes();
+Node findNode(Graph<Node,Road> & g, int node_id);
+Road findRoad(vector<Road> r, int road_id);
+void readNodes(Graph<Node,Road> & g);
 vector<Road> readRoads();
-vector<Subroad> readSubRoads();
+void readSubRoads(Graph<Node,Road> &g, vector<Road> roads);
 
 #endif

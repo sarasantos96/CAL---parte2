@@ -10,6 +10,7 @@ class Road{
 	string road_name;
 	bool is_two_way;
 public:
+	Road();
 	Road(int road_id, string road_name, bool is_two_way);
 
 	bool isIsTwoWay() const;
