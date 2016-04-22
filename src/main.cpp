@@ -5,7 +5,7 @@ using namespace std;
 AirShuttle airShuttle;
 
 void changePassengerNIF(){
-	int oldNif, newNif;
+	string oldNif, newNif;
 
 	cout<<"Current NIF: \n";
 	cin>>oldNif;
@@ -64,8 +64,8 @@ void passengerMenu(){
 }
 
 void addReservation(){
-	int day, month, year, hour, min, price, nif, aDay, aMonth, aYear, aHour, aMin;
-	string name, destination;
+	int day, month, year, hour, min, price, aDay, aMonth, aYear, aHour, aMin;
+	string name, destination, nif;
 
 	cout<<"Date of Reservation: \n";
 	cout<<"Day: ";
@@ -142,11 +142,8 @@ void getReservationsByDate(){
 	cin>>month;
 	cout<<"Year: ";
 	cin>>year;
-	cout<<"Hour: ";
-	cin>>hour;
-	cout<<"Minute: ";
-	cin>>min;
-	Date d = Date(day, month, year, hour, min);
+
+	Date d = Date(day, month, year, 0, 0);
 
 	vector<Reservation> r = airShuttle.getReservationByDate(d);
 
@@ -156,11 +153,11 @@ void getReservationsByDate(){
 	}
 
 	for(unsigned int i=0; i< r.size(); i++){
-		cout<<"ID: "<<r[i].getId()<<"Passenger: "<<r[i].getPassenger().getName()<<" "<<r[i].getPassenger().getNif()<<
-				"Date: "<<r[i].getDate().getDay()<<"/"<<r[i].getDate().getMonth()<<"/"<<r[i].getDate().getYear()<<" "<<
-				r[i].getDate().getHour()<<":"<<r[i].getDate().getMinutes()<<"Price: "<<r[i].getPrice()<<"Arrival: "<<
+		cout<<"ID: "<<r[i].getId()<<" Passenger: "<<r[i].getPassenger().getName()<<" "<<r[i].getPassenger().getNif()<<
+				" Date: "<<r[i].getDate().getDay()<<"/"<<r[i].getDate().getMonth()<<"/"<<r[i].getDate().getYear()<<" "<<
+				r[i].getDate().getHour()<<":"<<r[i].getDate().getMinutes()<<" Price: "<<r[i].getPrice()<<" Arrival: "<<
 				r[i].getArrival().getDay()<<"/"<<r[i].getArrival().getMonth()<<"/"<<r[i].getArrival().getYear()<<" "<<
-				r[i].getArrival().getHour()<<":"<<r[i].getArrival().getMinutes()<<"Destination: "<<r[i].getDestination()
+				r[i].getArrival().getHour()<<":"<<r[i].getArrival().getMinutes()<<" Destination: "<<r[i].getDestination()
 				<<endl;
 	}
 	reservationMenu();
@@ -168,7 +165,7 @@ void getReservationsByDate(){
 
 void getReservationsByPassenger(){
 	string name;
-	int nif;
+	string nif;
 
 	cout<<"Passenger's name: ";
 	cin>> name;

@@ -77,7 +77,7 @@ vector<Reservation> AirShuttle:: getReservationByDate(Date &d){
 
 	for(unsigned int i=0; i<reservations.size();i++){
 		Date d1= reservations[i].getDate();
-		if(d1 == d)
+		if((d1.getDay() == d.getDay()) && (d1.getMonth() == d.getMonth()) && (d1.getYear() == d.getYear()))
 			r.push_back(reservations[i]);
 	}
 
@@ -95,7 +95,7 @@ vector<Reservation> AirShuttle:: getReservationByPassenger(Passenger p){
 	return r;
 }
 
-bool AirShuttle:: changePassengerNIF(int oldNif, int newNif){
+bool AirShuttle:: changePassengerNIF(string oldNif, string newNif){
 	unsigned int i;
 	bool found=false;
 

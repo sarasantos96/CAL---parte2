@@ -4,7 +4,7 @@ using namespace std;
 
 Passenger:: Passenger(){}
 
-Passenger:: Passenger(string name, int nif){
+Passenger:: Passenger(string name, string nif){
 	this->name=name;
 	this->nif=nif;
 }
@@ -17,10 +17,10 @@ void Passenger:: setName(const string name) {
 	this->name = name;
 }
 
-int Passenger:: getNif() const {
+string Passenger:: getNif() const {
 	return nif;
 }
 
-void Passenger:: setNif(int nif) {
+void Passenger:: setNif(string nif) {
 	this->nif = nif;
 }

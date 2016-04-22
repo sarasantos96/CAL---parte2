@@ -23,7 +23,7 @@ public:
 	bool removeVan(Van v);
 	vector<Reservation> getReservationByDate(Date &d);
 	vector<Reservation> getReservationByPassenger(Passenger p);
-	bool changePassengerNIF(int oldNif, int newNif);
+	bool changePassengerNIF(string oldNif, string newNif);
 	bool changePassengerName(string oldName, string newName);
 };
 
