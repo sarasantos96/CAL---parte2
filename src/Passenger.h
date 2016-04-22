@@ -7,14 +7,14 @@ using namespace std;
 class Passenger{
 private:
 	string name;
-	int nif;
+	string nif;
 public:
 	Passenger();
-	Passenger(string name, int nif);
+	Passenger(string name, string nif);
 	string getName() const;
 	void setName(const string name);
-	int getNif() const;
-	void setNif(int nif);
+	string getNif() const;
+	void setNif(string nif);
 	friend bool operator ==(const Passenger &p1, const Passenger &p2){
 		if((p1.getName() == p2.getName()) && (p1.getNif() == p2.getNif()))
 			return true;

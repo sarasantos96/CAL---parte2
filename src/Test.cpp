@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include "FileReader.h"
 #include "Graph.h"
 #include "Node.h"
@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]){
 	vector<Vertex<Node,Road>* > vs = g.getVertexSet();
 
     return 0;
-}
+}*/
 
 
 
