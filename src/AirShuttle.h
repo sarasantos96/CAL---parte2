@@ -13,17 +13,18 @@ private:
 	vector<Reservation> reservations;
 	vector<Van> vans;
 public:
-	AirShuttle(vector<Reservation> reservations, vector<Van> vans);
+	AirShuttle();
 	vector<Passenger> getPassengers();
 	vector<Reservation> getReservations();
 	vector<Van> getVans();
 	bool addReservation(Reservation r);
-	bool removeReservation(Reservation r);
+	bool removeReservation(int id);
 	bool addVan(Van v);
 	bool removeVan(Van v);
 	vector<Reservation> getReservationByDate(Date &d);
 	vector<Reservation> getReservationByPassenger(Passenger p);
-
+	bool changePassengerNIF(int oldNif, int newNif);
+	bool changePassengerName(string oldName, string newName);
 };
 
 

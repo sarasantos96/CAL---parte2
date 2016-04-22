@@ -3,10 +3,8 @@
 
 using namespace std;
 
-AirShuttle:: AirShuttle(vector<Reservation> reservations, vector<Van> vans){
-	this->reservations=reservations;
-	this->vans=vans;
-}
+AirShuttle:: AirShuttle(){}
+
 vector<Passenger> AirShuttle:: getPassengers(){
 	vector<Passenger> p;
 	for(int i=0; i< reservations.size();i++){
@@ -29,11 +27,11 @@ bool AirShuttle:: addReservation(Reservation r){
 
 	reservations.push_back(r);
 }
-bool AirShuttle:: removeReservation(Reservation r){
+bool AirShuttle:: removeReservation(int id){
 	int i;
 	bool exist=false;
 	for(i=0;i < reservations.size();i++){
-		if(reservations[i]== r){
+		if(reservations[i].getId()== id){
 			exist=true;
 			break;
 		}
@@ -41,7 +39,7 @@ bool AirShuttle:: removeReservation(Reservation r){
 	if(exist)
 		reservations.erase(reservations.begin()+i);
 	else{
-		throw InexistentReservationException(r);
+		throw InexistentReservationException(id);
 		return false;
 	}
 	return true;
@@ -95,4 +93,49 @@ vector<Reservation> AirShuttle:: getReservationByPassenger(Passenger p){
 	}
 
 	return r;
+}
+
+bool AirShuttle:: changePassengerNIF(int oldNif, int newNif){
+	unsigned int i;
+	bool found=false;
+
+	for(i=0; i< reservations.size(); i++){
+		if(reservations[i].getPassenger().getNif() == oldNif){
+			found=true;
+			break;
+		}
+	}
+	if(found){
+		Passenger p = reservations[i].getPassenger();
+		p.setNif(newNif);
+		reservations[i].setPassenger(p);
+	}
+	else{
+		throw InexistentPassengerException();
+		return false;
+	}
+
+	return true;
+}
+bool AirShuttle:: changePassengerName(string oldName, string newName){
+	unsigned int i;
+	bool found=false;
+
+	for(i=0; i< reservations.size(); i++){
+		if(reservations[i].getPassenger().getName() == oldName){
+			found=true;
+			break;
+		}
+	}
+	if(found){
+		Passenger p = reservations[i].getPassenger();
+		p.setName(newName);
+		reservations[i].setPassenger(p);
+	}
+	else{
+		throw InexistentPassengerException();
+		return false;
+	}
+
+	return true;
 }

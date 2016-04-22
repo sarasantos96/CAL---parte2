@@ -11,10 +11,10 @@ public:
 };
 
 class InexistentReservationException{
-	Reservation reservation;
+	int id;
 public:
-	InexistentReservationException(Reservation r){reservation=r;}
-	Reservation getInexistentReservation(){return reservation;}
+	InexistentReservationException(int id){this->id= id ;}
+	int getInexistentReservationId(){return id;}
 };
 
 class DuplicateVanException{
@@ -31,5 +31,7 @@ public:
 	Van getInexistentVan(){ return van;}
 };
 
+class InexistentPassengerException{
+};
 
 #endif /* SRC_EXCEPTIONS_H_ */
