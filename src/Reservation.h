@@ -34,6 +34,10 @@ public:
 			return true;
 		return false;
 	}
+	bool operator < (const Reservation &r2){
+		if(date < r2.getDate()) return true;
+		return false;
+	}
 };
 
 #endif

@@ -1,5 +1,4 @@
 #include "FileReader.h"
-#include "GraphViewer.h"
 
 #define NODES 		"nodes.txt"
 #define ROADS 		"roads.txt"

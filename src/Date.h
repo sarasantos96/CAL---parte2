@@ -25,6 +25,11 @@ public:
 			return true;
 		return false;
 	}
+	friend bool operator <(const Date &d1, const Date &d2){
+		if(d1.getHour() > d2.getHour()) return false;
+		if(d1.getMinutes() > d2.getMinutes()) return false;
+		return true;
+	}
 };
 
 

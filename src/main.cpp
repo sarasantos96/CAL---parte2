@@ -374,22 +374,22 @@ void readVans(){
 	infile.close();
 }
 
-/*
-int main(){
-	airShuttle = AirShuttle();
+//
+//int main(){
+//	airShuttle = AirShuttle();
 	/*mainMenu();*/
-	readReservations();
-	vector<Reservation> r = airShuttle.getReservations();
+//	readReservations();
+//	vector<Reservation> r = airShuttle.getReservations();
 
-	for(unsigned int i=0; i< r.size(); i++){
-		cout<< r[i].getId()<<" "<<r[i].getPassenger().getName()<<" "<<r[i].getPassenger().getNif()<<" "<<
-				r[i].getDate().getHour()<<" "<<r[i].getDate().getMinutes()<<" "<<r[i].getDestination()<<endl;
-	}
+//	for(unsigned int i=0; i< r.size(); i++){
+//		cout<< r[i].getId()<<" "<<r[i].getPassenger().getName()<<" "<<r[i].getPassenger().getNif()<<" "<<
+//				r[i].getDate().getHour()<<" "<<r[i].getDate().getMinutes()<<" "<<r[i].getDestination()<<endl;
+//	}
 	//readVans();
 	/*vector<Van> v= airShuttle.getVans();
 	for(int i=0; i< v.size();i++){
 		cout<<v[i].getLPlate()<<" "<<v[i].getPassengers()<<endl;
 	}*/
 
-	return 0;
-}*/
+//	return 0;
+//}
