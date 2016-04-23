@@ -351,6 +351,9 @@ void readReservations(){
 		Reservation r= Reservation(id,d,p,destination);
 		res.push_back(r);
 	}
+
+	//sort(res.begin(),res.end());
+
 	sort(res.begin(),res.end());
 	airShuttle.setReservations(res);
 	infile.close();
@@ -378,22 +381,13 @@ void readVans(){
 	infile.close();
 }
 
-//
-//int main(){
-//	airShuttle = AirShuttle();
-	/*mainMenu();*/
-//	readReservations();
-//	vector<Reservation> r = airShuttle.getReservations();
 
-//	for(unsigned int i=0; i< r.size(); i++){
-//		cout<< r[i].getId()<<" "<<r[i].getPassenger().getName()<<" "<<r[i].getPassenger().getNif()<<" "<<
-//				r[i].getDate().getHour()<<" "<<r[i].getDate().getMinutes()<<" "<<r[i].getDestination()<<endl;
-//	}
-	//readVans();
-	/*vector<Van> v= airShuttle.getVans();
-	for(int i=0; i< v.size();i++){
-		cout<<v[i].getLPlate()<<" "<<v[i].getPassengers()<<endl;
-	}*/
+int main(){
+	airShuttle = AirShuttle();
+	readReservations();
+	readVans();
+	airShuttle.passengerTransportation();
 
-//	return 0;
-//}
+
+	return 0;
+}

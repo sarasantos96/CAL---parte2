@@ -25,13 +25,30 @@ void Van:: setPassengers(int nPassengers) {
 	this->nPassengers = nPassengers ;
 }
 
+const Date& Van:: getD() const {
+	return d;
+}
+
+void Van:: setD(const Date& d) {
+	this->d = d;
+}
+
+const vector<Reservation>& Van:: getReservations() const {
+	return reservations;
+}
+
+void Van:: setReservations(const vector<Reservation>& reservations) {
+	this->reservations = reservations;
+}
+
+
+void Van:: addReservation(Reservation r){
+	reservations.push_back(r);
+}
+
 vector<Reservation> Van:: getReservations(){
 	return reservations;
 }
 void Van:: setReservations(vector<Reservation> res){
 	reservations = res;
-}
-
-void Van:: addReservation(Reservation r){
-	reservations.push_back(r);
 }

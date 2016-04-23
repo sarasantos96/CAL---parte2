@@ -119,32 +119,40 @@ bool AirShuttle:: changePassengerName(string oldName, string newName){
 	return true;
 }
 
-void AirShuttle:: setReservations(vector <Reservation> r){
-	this->reservations = r;
+void AirShuttle:: setReservations(vector<Reservation> res){
+	this->reservations=res;
 }
 
 void AirShuttle:: passengerTransportation(){
-	int nReservations = reservations.size();
-	int i=0;
-	int waitTime = 30; //minutes
+	int i=0, van=0;
+	int waitTime = 30;//minutes
 	Date d;
 
-	int seats = vans[0].getPassengers(); //UMA CARRINHA
-	for(; i< nReservations;i++){
+	for(;i<reservations.size();i++){
+		int seats = vans[van].getPassengers();
+		vans[van].addReservation(reservations[i]);
 		d= Date(reservations[i].getDate().getHour(),reservations[i].getDate().getMinutes());
 		bool wait = true;
 		int j= i+1;
-		while(seats != 0 && wait){
+		while(seats > 0 && wait && j<reservations.size()){
 			int dif = ((reservations[j].getDate().getHour() * 60)+ reservations[j].getDate().getMinutes()) -
 					((d.getHour() * 60)+ d.getMinutes());
-			if(abs(dif)>30)
+			if(dif>30){
 				wait=false;
-			else{
-				reservations[i].addVan(vans[0]);
+				van++;
 			}
+			else{
+				vans[van].addReservation(reservations[j]);
+				d=  Date(reservations[j].getDate().getHour(),reservations[j].getDate().getMinutes());
+				seats--;
+				j++;
+			}
+			if(van >= vans.size())
+				van=0;
 		}
+		vans[van].setD(d);
 		i=j-1;
 	}
-
-
+	cout<< vans[0].getReservations().size()<<endl;
+	cout<< vans[1].getReservations().size()<<endl;
 }

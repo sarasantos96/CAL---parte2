@@ -32,7 +32,7 @@ public:
 			return true;
 		return false;
 	}
-	bool operator < (const Reservation &r2){
+	bool operator < (const Reservation &r2)const{
 		if(date < r2.getDate()) return true;
 		return false;
 	}
