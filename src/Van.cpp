@@ -25,6 +25,13 @@ void Van:: setPassengers(int nPassengers) {
 	this->nPassengers = nPassengers ;
 }
 
+vector<Reservation> Van:: getReservations(){
+	return reservations;
+}
+void Van:: setReservations(vector<Reservation> res){
+	reservations = res;
+}
 
-
-
+void Van:: addReservation(Reservation r){
+	reservations.push_back(r);
+}

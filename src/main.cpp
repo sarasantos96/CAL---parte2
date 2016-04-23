@@ -1,9 +1,11 @@
 #include "main.h"
+#include <algorithm>
 
 using namespace std;
 
 #define RESERVATIONS "Reservations.txt"
 #define VANS "Vans.txt"
+
 
 AirShuttle airShuttle;
 /*
@@ -329,6 +331,7 @@ void readReservations(){
 	infile.open(RESERVATIONS);
 	int id,Hour, Min, Day;
 	string name, destination,nif;
+	vector <Reservation> res;
 
 	while(getline(infile,line)){
 		stringstream linestream(line);
@@ -346,9 +349,10 @@ void readReservations(){
 		Passenger p= Passenger(name,nif);
 		Date d= Date(Hour, Min);
 		Reservation r= Reservation(id,d,p,destination);
-		airShuttle.addReservation(r);
+		res.push_back(r);
 	}
-
+	sort(res.begin(),res.end());
+	airShuttle.setReservations(res);
 	infile.close();
 }
 

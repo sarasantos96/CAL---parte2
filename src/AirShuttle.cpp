@@ -118,3 +118,33 @@ bool AirShuttle:: changePassengerName(string oldName, string newName){
 
 	return true;
 }
+
+void AirShuttle:: setReservations(vector <Reservation> r){
+	this->reservations = r;
+}
+
+void AirShuttle:: passengerTransportation(){
+	int nReservations = reservations.size();
+	int i=0;
+	int waitTime = 30; //minutes
+	Date d;
+
+	int seats = vans[0].getPassengers(); //UMA CARRINHA
+	for(; i< nReservations;i++){
+		d= Date(reservations[i].getDate().getHour(),reservations[i].getDate().getMinutes());
+		bool wait = true;
+		int j= i+1;
+		while(seats != 0 && wait){
+			int dif = ((reservations[j].getDate().getHour() * 60)+ reservations[j].getDate().getMinutes()) -
+					((d.getHour() * 60)+ d.getMinutes());
+			if(abs(dif)>30)
+				wait=false;
+			else{
+				reservations[i].addVan(vans[0]);
+			}
+		}
+		i=j-1;
+	}
+
+
+}

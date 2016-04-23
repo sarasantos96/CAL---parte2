@@ -9,6 +9,9 @@ class Van{
 private:
 	string lPlate;
 	int nPassengers;
+	vector <Reservation> reservations;
+	Date d;
+
 public:
 	Van();
 	Van(string lPlate, int nPassengers);
@@ -21,6 +24,10 @@ public:
 				return true;
 			return false;
 		}
+	vector<Reservation> getReservations();
+	void setReservations(vector<Reservation> res);
+	void addReservation(Reservation r);
 };
+
 
 #endif
