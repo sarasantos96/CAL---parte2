@@ -5,14 +5,11 @@
 
 class Date{
 private:
-	int day;
-	int month;
-	int year;
 	int hour;
 	int minutes;
 public:
 	Date();
-	Date(int day, int month, int year, int hour, int minutes);
+	Date(int hour, int minutes);
 	int getDay() const;
 	void setDay(int day);
 	int getHour() const;
