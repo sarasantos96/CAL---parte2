@@ -2,8 +2,11 @@
 
 using namespace std;
 
-AirShuttle airShuttle;
+#define RESERVATIONS "Reservations.txt"
+#define VANS "Vans.txt"
 
+AirShuttle airShuttle;
+/*
 void changePassengerNIF(){
 	string oldNif, newNif;
 
@@ -105,7 +108,9 @@ void addReservation(){
 	cout<<"Price: ";
 	cin>>price;
 
-	Reservation r = Reservation(dRerservation, p, price, dArrival, destination);
+	int id= 0;
+
+	Reservation r = Reservation(id,dRerservation, p, price, dArrival, destination);
 
 	try{
 		airShuttle.addReservation(r);
@@ -290,6 +295,7 @@ void mainMenu(){
 	cout<<"1- Passenger options \n";
 	cout<<"2- Reservation options \n";
 	cout<<"3- Van options \n";
+	cout<<"5- Read Reservations \n";
 	cout<<"4- Exit \n";
 
 	int option;
@@ -307,16 +313,83 @@ void mainMenu(){
 		break;
 	case 4:
 		return;
+	case 5:
+		readReservations();
+		break;
 	default:
 		cout<<"Invalid option. Insert new one \n";
 		mainMenu();
 		break;
 	}
+}*/
+
+void readReservations(){
+	ifstream infile;
+	string line;
+	infile.open(RESERVATIONS);
+	int id,Hour, Min, Day;
+	string name, destination,nif;
+
+	while(getline(infile,line)){
+		stringstream linestream(line);
+		string data;
+
+		linestream >> id;
+		getline(linestream, data, ';');
+		getline(linestream, name, ';');
+		getline(linestream, nif, ';');
+		linestream >> Hour;
+		getline(linestream, data, ';');
+		linestream >> Min;
+		getline(linestream, destination, ';');
+
+		Passenger p= Passenger(name,nif);
+		Date d= Date(Hour, Min);
+		Reservation r= Reservation(id,d,p,destination);
+		airShuttle.addReservation(r);
+	}
+
+	infile.close();
+}
+
+void readVans(){
+	ifstream infile;
+	string line;
+	infile.open(VANS);
+
+	while(getline(infile,line)){
+		stringstream linestream(line);
+		stringstream linestream2(line);
+		string data;
+		string lp;
+		int cap;
+
+		getline(linestream, lp, ';');  // read up-to the first ; (discard ;).
+		getline(linestream2, data, ';');
+		linestream2 >> cap;
+
+		Van v= Van(lp,cap);
+		airShuttle.addVan(v);
+	}
+	infile.close();
 }
 
 /*
 int main(){
 	airShuttle = AirShuttle();
-	mainMenu();
+	/*mainMenu();*/
+	readReservations();
+	vector<Reservation> r = airShuttle.getReservations();
+
+	for(unsigned int i=0; i< r.size(); i++){
+		cout<< r[i].getId()<<" "<<r[i].getPassenger().getName()<<" "<<r[i].getPassenger().getNif()<<" "<<
+				r[i].getDate().getHour()<<" "<<r[i].getDate().getMinutes()<<" "<<r[i].getDestination()<<endl;
+	}
+	//readVans();
+	/*vector<Van> v= airShuttle.getVans();
+	for(int i=0; i< v.size();i++){
+		cout<<v[i].getLPlate()<<" "<<v[i].getPassengers()<<endl;
+	}*/
+
 	return 0;
 }*/

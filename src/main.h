@@ -8,6 +8,12 @@
 #include "Van.h"
 #include "Date.h"
 #include "Exceptions.h"
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -37,8 +43,11 @@ void removeVan();
 
 void vanMenu();
 
+void readReservations();
+
+void readVans();
+
 void mainMenu();
 
 int main();
-
 #endif /* SRC_MAIN_H_ */

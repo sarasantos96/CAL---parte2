@@ -20,12 +20,14 @@ vector<Van> AirShuttle:: getVans(){
 }
 bool AirShuttle:: addReservation(Reservation r){
 	for(int i=0; i< reservations.size(); i++){
-		if(reservations[i]==r)
+		if(reservations[i]==r) {
 			throw DuplicateReservationException(r);
 			return false;
+		}
 	}
 
 	reservations.push_back(r);
+	return true;
 }
 bool AirShuttle:: removeReservation(int id){
 	int i;
@@ -46,12 +48,12 @@ bool AirShuttle:: removeReservation(int id){
 }
 bool AirShuttle:: addVan(Van v){
 	for(int i=0; i< vans.size(); i++){
-		if(vans[i]==v)
+		if(vans[i]==v){
 			throw DuplicateVanException(v);
-		return false;
+		}
 	}
-
 	vans.push_back(v);
+	return true;
 }
 bool AirShuttle:: removeVan(Van v){
 	int i;
@@ -70,29 +72,6 @@ bool AirShuttle:: removeVan(Van v){
 		return false;
 	}
 	return true;
-}
-
-vector<Reservation> AirShuttle:: getReservationByDate(Date &d){
-	vector<Reservation> r;
-
-	for(unsigned int i=0; i<reservations.size();i++){
-		Date d1= reservations[i].getDate();
-		if((d1.getDay() == d.getDay()) && (d1.getMonth() == d.getMonth()) && (d1.getYear() == d.getYear()))
-			r.push_back(reservations[i]);
-	}
-
-	return r;
-}
-vector<Reservation> AirShuttle:: getReservationByPassenger(Passenger p){
-	vector<Reservation> r;
-
-	for(unsigned int i=0; i<reservations.size();i++){
-		Passenger p1= reservations[i].getPassenger();
-		if(p1 == p)
-			r.push_back(reservations[i]);
-	}
-
-	return r;
 }
 
 bool AirShuttle:: changePassengerNIF(string oldNif, string newNif){

@@ -14,12 +14,10 @@ private:
 	int id;
 	Date date;
 	Passenger passenger;
-	int price;
-	Date arrival;
 	string destination;
 public:
 	Reservation();
-	Reservation(Date date, Passenger passenger, int price, Date arrival, string destination);
+	Reservation(int id, Date date, Passenger passenger, string destination);
 	const Date& getArrival() const;
 	void setArrival(const Date& arrival);
 	const Date& getDate()const;
