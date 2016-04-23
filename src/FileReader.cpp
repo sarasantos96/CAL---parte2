@@ -6,7 +6,7 @@
 
 Graph<Node,Road> g;
 
-void loadGraph(Graph<Node,Road> g){
+void loadGraph(Graph<Node,Road> &g){
 	readNodes(g);
 	vector<Road> roads = readRoads();
 	readSubRoads(g,roads);
@@ -17,7 +17,7 @@ Node findNode(Graph<Node,Road> & g, int node_id){
 		if(node_id == g.getVertexSet()[i]->getInfo().getNodeId())
 			return g.getVertexSet()[i]->getInfo();
 	}
-	return Node(-1,Point(0,0),Point(0,0));
+	return Node(-1,Point(0,0),Point(0,0), "");
 }
 
 Road findRoad(vector<Road> r, int road_id){
@@ -31,29 +31,29 @@ Road findRoad(vector<Road> r, int road_id){
 void readNodes(Graph<Node,Road> & g){
 	ifstream infile;
 	string line;
-	unsigned int node_id;
-	double lat_deg, lon_deg, lon_rad, lat_rad;
 	infile.open(NODES);
 
 	while(getline(infile,line)){
 		stringstream linestream(line);
 		string data;
 
+		unsigned int node_id;
+		double x, y, x_r, y_r;
+		string nome = "";
+
 		linestream >> node_id;
 		getline(linestream, data, ';');  // read up-to the first ; (discard ;).
-		linestream >> lat_deg;
+		linestream >> x;
 		getline(linestream, data, ';');  // read up-to the first ; (discard ;).
-		linestream >> lon_deg;
+		linestream >> y;
 		getline(linestream, data, ';');  // read up-to the first ; (discard ;).
-		linestream >> lon_rad;
+		linestream >> x_r;
 		getline(linestream, data, ';');  // read up-to the first ; (discard ;).
-		linestream >> lat_rad;
+		linestream >> y_r;
+		getline(linestream, data, ';');
+		linestream >> nome;
 
-		Node n(node_id, Point(lon_deg,lat_deg), Point(lon_rad,lat_rad));
-
-		stringstream label;
-		label << node_id;
-		string result = label.str();
+		Node n(node_id, Point(x,y), Point(x_r,y_r), nome);
 
 		g.addVertex(n);
 	}
@@ -114,7 +114,10 @@ void readSubRoads(Graph<Node,Road> &g, vector<Road> roads){
 
 		Road r = findRoad(roads, road_id);
 
-		if(r.getRoadId() != -1){
+		if(r.isIsTwoWay()){
+			g.addEdge(node_1,node_2,r,distance);
+			g.addEdge(node_2,node_1,r,distance);
+		}else{
 			g.addEdge(node_1,node_2,r,distance);
 		}
 	}

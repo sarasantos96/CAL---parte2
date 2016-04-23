@@ -49,6 +49,8 @@ public:
 	int getDist() const;
 	int getIndegree() const;
 
+	vector<Edge<N,R>  > getAdj() const;
+
 	Vertex* path;
 };
 
@@ -163,6 +165,11 @@ void Vertex<N,R>::setInfo(N info) {
 template <class N, class R>
 int Vertex<N,R>::getIndegree() const {
 	return this->indegree;
+}
+
+template <class N, class R>
+vector<Edge<N,R>  > Vertex<N,R>:: getAdj() const{
+	return this->adj;
 }
 
 /* ================================================================================================

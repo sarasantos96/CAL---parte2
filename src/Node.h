@@ -2,14 +2,18 @@
 #define SRC_NODE_H_
 
 #include "Point.h"
+#include <string>
 #include <cmath>
+
+using namespace std;
 
 class Node{
 	unsigned int node_id;
+	string hotel;
 	Point p_degree;
 	Point p_radian;
 public:
-	Node(int node_id, Point p_degree, Point p_radian);
+	Node(int node_id, Point p_degree, Point p_radian, string hotel);
 
 	Point getPointDegree() const;
 	void setPointDegree(Point p_degree);
@@ -19,6 +23,9 @@ public:
 
 	int getNodeId() const;
 	void setNodeId(int nodeId);
+
+	string getHotelName() const;
+	void setHotelName(string hotel);
 
 	bool operator==(const Node& rhs) const;
 };

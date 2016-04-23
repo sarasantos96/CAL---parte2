@@ -7,8 +7,6 @@
 
 using namespace std;
 
-
-
 class Reservation{
 private:
 	int id;
