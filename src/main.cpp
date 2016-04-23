@@ -314,8 +314,9 @@ void mainMenu(){
 	}
 }
 
+/*
 int main(){
 	airShuttle = AirShuttle();
 	mainMenu();
 	return 0;
-}
+}*/

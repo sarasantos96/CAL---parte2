@@ -9,6 +9,7 @@ class Road{
 	int road_id;
 	string road_name;
 	bool is_two_way;
+	bool is_obstructed;
 public:
 	Road();
 	Road(int road_id, string road_name, bool is_two_way);
@@ -21,6 +22,9 @@ public:
 
 	const string& getRoadName() const;
 	void setRoadName(const string& roadName);
+
+	bool getObstructed() const;
+	void setObstructed(bool isObstructed);
 };
 
 #endif

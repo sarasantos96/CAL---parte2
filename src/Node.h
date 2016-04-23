@@ -2,6 +2,7 @@
 #define SRC_NODE_H_
 
 #include "Point.h"
+#include <cmath>
 
 class Node{
 	unsigned int node_id;

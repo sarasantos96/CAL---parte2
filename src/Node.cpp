@@ -11,6 +11,4 @@ void Node:: setPointRadian(Point p_radian){this->p_radian = p_radian;}
 int Node:: getNodeId() const {return node_id;}
 void Node:: setNodeId(int nodeId){this->node_id = nodeId;}
 
-bool Node::operator ==(const Node& rhs) const{
-	return node_id == rhs.getNodeId();
-}
+bool Node::operator ==(const Node& rhs) const{return node_id == rhs.getNodeId();}

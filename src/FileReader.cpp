@@ -1,8 +1,17 @@
 #include "FileReader.h"
+#include "GraphViewer.h"
 
 #define NODES 		"nodes.txt"
 #define ROADS 		"roads.txt"
 #define SUBROADS 	"subroads.txt"
+
+Graph<Node,Road> g;
+
+void loadGraph(Graph<Node,Road> g){
+	readNodes(g);
+	vector<Road> roads = readRoads();
+	readSubRoads(g,roads);
+}
 
 Node findNode(Graph<Node,Road> & g, int node_id){
 	for(int i = 0; i < g.getNumVertex(); i++){
@@ -42,6 +51,10 @@ void readNodes(Graph<Node,Road> & g){
 		linestream >> lat_rad;
 
 		Node n(node_id, Point(lon_deg,lat_deg), Point(lon_rad,lat_rad));
+
+		stringstream label;
+		label << node_id;
+		string result = label.str();
 
 		g.addVertex(n);
 	}
@@ -95,11 +108,16 @@ void readSubRoads(Graph<Node,Road> &g, vector<Road> roads){
 
 		Node node_1 = findNode(g,node1_id);
 		Node node_2 = findNode(g,node2_id);
+		Point d1 = node_1.getPointDegree();
+		Point d2 = node_2.getPointDegree();
+
+		double distance = sqrt(pow((d1.getX() - d2.getX()),2) + pow((d1.getY() - d2.getY()),2));
+
 		Road r = findRoad(roads, road_id);
 
-		if(r.getRoadId() != -1) g.addEdge(node_1,node_2,r,0);
-
-		//subroads.push_back(Subroad(road_id,node1_id,node2_id));
+		if(r.getRoadId() != -1){
+			g.addEdge(node_1,node_2,r,distance);
+		}
 	}
 
 	infile.close();
