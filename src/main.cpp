@@ -352,8 +352,6 @@ void readReservations(){
 		res.push_back(r);
 	}
 
-	//sort(res.begin(),res.end());
-
 	sort(res.begin(),res.end());
 	airShuttle.setReservations(res);
 	infile.close();
@@ -386,8 +384,7 @@ int main(){
 	airShuttle = AirShuttle();
 	readReservations();
 	readVans();
-	airShuttle.passengerTransportation();
-
+	airShuttle.distributePassengers();
 
 	return 0;
 }

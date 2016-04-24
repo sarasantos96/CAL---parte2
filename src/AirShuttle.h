@@ -25,7 +25,7 @@ public:
 	vector<Reservation> getReservationByPassenger(Passenger p);
 	bool changePassengerNIF(string oldNif, string newNif);
 	bool changePassengerName(string oldName, string newName);
-	void passengerTransportation();
+	void distributePassengers();
 	void setReservations(vector<Reservation> res);
 
 };

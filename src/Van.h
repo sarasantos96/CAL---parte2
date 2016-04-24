@@ -11,8 +11,8 @@ class Van{
 private:
 	string lPlate;
 	int nPassengers;
-	vector <Reservation> reservations;
-	Date d;
+	vector <vector<Reservation> > reservations;
+	vector<Date> dates;
 
 public:
 	Van();
@@ -21,18 +21,17 @@ public:
 	void setLPlate(const string& lPlate);
 	int getPassengers() const;
 	void setPassengers(int nPassengers);
-	const Date& getD() const ;
-	void setD(const Date& d);
-	const vector<Reservation>& getReservations() const;
-	void setReservations(const vector<Reservation>& reservations);
-	void addReservation(Reservation r);
+	const vector<Date> & getD() const ;
+	void setD(const vector<Date>& d);
+	const vector<vector<Reservation> >& getReservations() const;
+	void setReservations(const vector<vector<Reservation> >& reservations);
 	bool operator ==(const Van &v2){
 			if(lPlate == v2.getLPlate())
 				return true;
 			return false;
 		}
-	vector<Reservation> getReservations();
-	void setReservations(vector<Reservation> res);
+	void addDate(Date &d);
+	void addReservations(vector<Reservation> r);
 };
 
 

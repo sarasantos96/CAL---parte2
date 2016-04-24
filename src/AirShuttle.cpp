@@ -123,14 +123,15 @@ void AirShuttle:: setReservations(vector<Reservation> res){
 	this->reservations=res;
 }
 
-void AirShuttle:: passengerTransportation(){
+void AirShuttle:: distributePassengers(){
 	int i=0, van=0;
 	int waitTime = 30;//minutes
 	Date d;
 
 	for(;i<reservations.size();i++){
 		int seats = vans[van].getPassengers();
-		vans[van].addReservation(reservations[i]);
+		vector <Reservation> temp;
+		temp.push_back(reservations[i]);
 		d= Date(reservations[i].getDate().getHour(),reservations[i].getDate().getMinutes());
 		bool wait = true;
 		int j= i+1;
@@ -139,10 +140,9 @@ void AirShuttle:: passengerTransportation(){
 					((d.getHour() * 60)+ d.getMinutes());
 			if(dif>30){
 				wait=false;
-				van++;
 			}
 			else{
-				vans[van].addReservation(reservations[j]);
+				temp.push_back(reservations[j]);
 				d=  Date(reservations[j].getDate().getHour(),reservations[j].getDate().getMinutes());
 				seats--;
 				j++;
@@ -150,9 +150,9 @@ void AirShuttle:: passengerTransportation(){
 			if(van >= vans.size())
 				van=0;
 		}
-		vans[van].setD(d);
+		vans[van].addDate(d);
+		vans[van].addReservations(temp);
+		van++;
 		i=j-1;
 	}
-	cout<< vans[0].getReservations().size()<<endl;
-	cout<< vans[1].getReservations().size()<<endl;
 }

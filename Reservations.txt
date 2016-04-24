@@ -1,3 +1,4 @@
-0;Antonio;0055;12;50;Porto
-1;Joana;2255;13;00;Maia
-3;Rui;85452;17;08;Matosinhos
+0;Antonio;0055;12;00;Porto
+1;Joana;2255;13;30;Maia
+3;Rui;85452;12;08;Matosinhos
+4;Rui;85452;13;38;Matosinhos
