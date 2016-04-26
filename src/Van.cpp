@@ -49,3 +49,10 @@ void Van:: addReservations(vector<Reservation> r){
 	reservations.push_back(r);
 }
 
+void Van:: setSortedTrips(int res, vector<Reservation> trip){
+	trips.push_back(trip);
+}
+
+vector<vector<Reservation> > Van::getTrips() const{
+	return trips;
+}

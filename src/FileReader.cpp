@@ -1,15 +1,24 @@
 #include "FileReader.h"
+#include "graphviewer.h"
 
 #define NODES 		"nodes.txt"
 #define ROADS 		"roads.txt"
 #define SUBROADS 	"subroads.txt"
 
 Graph<Node,Road> g;
+GraphViewer *gv;
 
 void loadGraph(Graph<Node,Road> &g){
 	readNodes(g);
 	vector<Road> roads = readRoads();
 	readSubRoads(g,roads);
+
+	/*gv = new GraphViewer(600, 600, true);
+	gv->createWindow(600, 600);
+	gv->defineEdgeDashed(true);
+	gv->defineVertexColor("blue");
+	gv->defineEdgeColor("black");*/
+
 }
 
 Node findNode(Graph<Node,Road> & g, int node_id){
@@ -56,6 +65,7 @@ void readNodes(Graph<Node,Road> & g){
 		Node n(node_id, Point(x,y), Point(x_r,y_r), nome);
 
 		g.addVertex(n);
+		//gv->addNode(node_id,x,y);
 	}
 
 	infile.close();
@@ -119,6 +129,7 @@ void readSubRoads(Graph<Node,Road> &g, vector<Road> roads){
 			g.addEdge(node_2,node_1,r,distance);
 		}else{
 			g.addEdge(node_1,node_2,r,distance);
+			//gv->addEdge(road_id,node1_id,node2_id,0);
 		}
 	}
 

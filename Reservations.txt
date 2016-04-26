@@ -1,4 +1,9 @@
-0;Antonio;0055;12;00;Hotel2
+0;Antonio;0055;12;00;Hotel3
 1;Joana;2255;13;30;Hotel3
+<<<<<<< HEAD
 3;Rui Santos;85452;12;08;Hotel3
 4;Rui Luis;85452;13;38;Hotel1
+=======
+3;Rui;85452;12;08;Hotel2
+4;Rui;85452;13;38;Hotel1
+>>>>>>> 0968ecfed0f580977629b0f8ee3c7aa00753b7fc
