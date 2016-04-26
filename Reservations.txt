@@ -1,7 +1,7 @@
 0;Antonio;0055;12;00;Hotel3
-1;Joana;2255;13;30;Hotel3
 2;Joao;2354;12;05;Hotel1
 3;Rui Santos;85452;12;08;Hotel2
-4;Rui Luis;85452;13;38;Hotel1
 5;Marta;86930;12;15;Hotel3
 6;Hugo;91238;12;23;Hotel2
+1;Joana;2255;13;30;Hotel3
+4;Rui Luis;85452;13;38;Hotel1

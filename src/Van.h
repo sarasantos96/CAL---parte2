@@ -13,7 +13,7 @@ private:
 	int nPassengers;
 	vector <vector<Reservation> > reservations;
 	vector<Date> dates;
-	vector<vector<Reservation> > trips;
+	vector<vector<string> > trips;
 public:
 	Van();
 	Van(string lPlate, int nPassengers);
@@ -32,8 +32,8 @@ public:
 		}
 	void addDate(Date &d);
 	void addReservations(vector<Reservation> r);
-	void setSortedTrips(int res, vector<Reservation> trip);
-	vector<vector<Reservation> > getTrips() const;
+	void setSortedTrips(vector<string> trip);
+	vector<vector<string> > getTrips() const;
 };
 
 
