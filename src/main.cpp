@@ -10,6 +10,9 @@ using namespace std;
 
 AirShuttle airShuttle;
 
+/**Display all the reservations
+ *
+ */
 void diplayReservations() {
 	vector <Reservation> r = airShuttle.getReservations();
 
@@ -20,7 +23,9 @@ void diplayReservations() {
 	}
 	mainMenu();
 }
-
+/**Display all the vans
+ *
+ */
 void displayVans(){
 	vector<Van> v = airShuttle.getVans();
 	for(unsigned int i=0; i < v.size(); i++){
@@ -28,7 +33,9 @@ void displayVans(){
 	}
 	mainMenu();
 }
-
+/**Display all the trips by van, date and order of route
+ *
+ */
 void displayTrips(){
 	vector <Van> v = airShuttle.getVans();
 	for (unsigned int i=0; i< v.size(); i++){
@@ -50,7 +57,9 @@ void displayTrips(){
 
 	mainMenu();
 }
-
+/**Display all the groups of passengers that travel together
+ *
+ */
 void displayGroups(){
 	vector <Van> v = airShuttle.getVans();
 
@@ -66,7 +75,9 @@ void displayGroups(){
 	}
 	mainMenu();
 }
-
+/**Main menu Function
+ *
+ */
 void mainMenu(){
 	cout<<"1- Show all reservations \n";
 	cout<<"2- Show all vans \n";
@@ -98,7 +109,9 @@ void mainMenu(){
 		break;
 	}
 }
-
+/**Reads all reservations from a file and loads them to the airShuttle
+ *
+ */
 void readReservations(){
 	ifstream infile;
 	string line;
@@ -131,7 +144,9 @@ void readReservations(){
 	airShuttle.setReservations(res);
 	infile.close();
 }
-
+/**Reads all vans from a file and loads them to the airShuttle
+ *
+ */
 void readVans(){
 	ifstream infile;
 	string line;
@@ -154,7 +169,9 @@ void readVans(){
 	infile.close();
 }
 
-
+/**Main Funtion
+ *
+ */
 int main(){
 	Graph<Node,Road> g;
 	loadGraph(g);
