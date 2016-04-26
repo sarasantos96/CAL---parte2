@@ -179,7 +179,7 @@ vector<Reservation> AirShuttle:: getReservationByDate(Date &d){
 }
 
 void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber){
-	unsigned int cnt = 0;
+	unsigned int cnt;
 	vector<Node> fullPath;
 	g.dijkstraShortestPath(g.getVertex(1)->getInfo());
 
@@ -188,9 +188,10 @@ void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber)
 	for(unsigned int r = 0; r < res.size(); r++){
 		vector<Reservation> path = res[r];
 		vector<Reservation> trip;
+		vector<Reservation> final;
 		vector<Node> temp;
 		Date pDate;
-
+		cnt = 0;
 		fullPath = g.getPath(g.getVertex(1)->getInfo(), g.getVertex(path[cnt].getDestination())->getInfo());
 		g.dijkstraShortestPath(g.getVertex(path[cnt].getDestination())->getInfo());
 
@@ -217,13 +218,12 @@ void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber)
 
 			pDate = path[p].getDate();
 			trip = getReservationByDate(pDate);
-
-			vector<Reservation> final;
 			for(unsigned int fin = 0; fin < trip.size(); fin ++){
 				final.push_back(trip[fin]);
 			}
-			vans[vanNumber-1].setSortedTrips(r,final);
 		}
+
+		vans[vanNumber-1].setSortedTrips(r,final);
 	}
 }
 
