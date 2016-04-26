@@ -15,6 +15,7 @@ class AirShuttle{
 private:
 	vector<Reservation> reservations;
 	vector<Van> vans;
+
 public:
 	AirShuttle();
 	vector<Passenger> getPassengers();

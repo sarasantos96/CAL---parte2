@@ -147,12 +147,14 @@ void AirShuttle:: distributePassengers(){
 				seats--;
 				j++;
 			}
-			if(van >= vans.size())
-				van=0;
+
 		}
 		vans[van].addDate(d);
 		vans[van].addReservations(temp);
-		van++;
+		if(van == vans.size() -1)
+			van=0;
+		else
+			van++;
 		i=j-1;
 	}
 }
