@@ -144,7 +144,7 @@ int main(){
 	readReservations();
 	readVans();
 	airShuttle.distributePassengers();
-	/*airShuttle.sortDistributions(g,1);*/
-	mainMenu();
+	airShuttle.sortDistributions(g,1);
+	//mainMenu();
 	return 0;
 }

@@ -184,7 +184,6 @@ void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber)
 	g.dijkstraShortestPath(g.getVertex(1)->getInfo());
 
 	vector<vector<Reservation> > res = vans[vanNumber-1].getReservations();
-	vector<Reservation> final;
 
 	for(unsigned int r = 0; r < res.size(); r++){
 		vector<Reservation> path = res[r];
@@ -208,8 +207,8 @@ void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber)
 					}
 				}
 			}
-			for(unsigned int o = 1; o <= temp.size(); o++){
-				fullPath.push_back(temp[o - 1]);
+			for(unsigned int o = 0; o < temp.size(); o++){
+				fullPath.push_back(temp[o]);
 			}
 
 			if(fullPath[fullPath.size() - 1].getNodeId() == fullPath[fullPath.size()-2].getNodeId()){
@@ -218,10 +217,11 @@ void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber)
 
 			pDate = path[p].getDate();
 			trip = getReservationByDate(pDate);
+
+			vector<Reservation> final;
 			for(unsigned int fin = 0; fin < trip.size(); fin ++){
 				final.push_back(trip[fin]);
 			}
-
 			vans[vanNumber-1].setSortedTrips(r,final);
 		}
 	}
