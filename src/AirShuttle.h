@@ -25,12 +25,14 @@ public:
 	bool addVan(Van v);
 	bool removeVan(Van v);
 	vector<Reservation> getReservationByDate(Date &d);
+	vector<Reservation> getReservationByDestination(string destination);
 	vector<Reservation> getReservationByPassenger(Passenger p);
 	bool changePassengerNIF(string oldNif, string newNif);
 	bool changePassengerName(string oldName, string newName);
 	void distributePassengers();
 	void setReservations(vector<Reservation> res);
 	void sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber);
+	vector<Reservation> sortTrips(vector<Node> path, Date pDate);
 };
 
 
