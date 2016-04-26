@@ -13,5 +13,3 @@ void Node:: setNodeId(int nodeId){this->node_id = nodeId;}
 
 string Node:: getHotelName() const {return this->hotel;}
 void Node:: setHotelName(string hotel) {this->hotel = hotel;}
-
-bool Node::operator ==(const Node& rhs) const{return node_id == rhs.getNodeId();}

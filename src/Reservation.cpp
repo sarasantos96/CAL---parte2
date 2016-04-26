@@ -19,7 +19,7 @@ void Reservation:: setDate(Date date) {
 	this->date = date;
 }
 
-const string& Reservation:: getDestination() const {
+string Reservation:: getDestination() const {
 	return destination;
 }
 

@@ -20,7 +20,7 @@ public:
 	void setArrival(const Date& arrival);
 	const Date& getDate()const;
 	void setDate(Date date);
-	const string& getDestination() const;
+	string getDestination() const;
 	void setDestination(const string& destination);
 	const Passenger& getPassenger() const;
 	void setPassenger(const Passenger& passenger);

@@ -1,4 +1,5 @@
 #include "main.h"
+#include "FileReader.h"
 #include <algorithm>
 
 using namespace std;
@@ -345,6 +346,7 @@ void readReservations(){
 		getline(linestream, data, ';');
 		linestream >> Min;
 		getline(linestream, destination, ';');
+		linestream >> destination;
 
 		Passenger p= Passenger(name,nif);
 		Date d= Date(Hour, Min);
@@ -381,10 +383,12 @@ void readVans(){
 
 
 int main(){
+	Graph<Node,Road> g;
+	loadGraph(g);
 	airShuttle = AirShuttle();
 	readReservations();
 	readVans();
 	airShuttle.distributePassengers();
-
+	airShuttle.sortDistributions(g,1);
 	return 0;
 }

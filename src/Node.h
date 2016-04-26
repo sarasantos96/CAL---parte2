@@ -27,7 +27,18 @@ public:
 	string getHotelName() const;
 	void setHotelName(string hotel);
 
-	bool operator==(const Node& rhs) const;
+	bool operator==(const Node& rhs) const{
+		if(node_id == rhs.getNodeId()) return true;
+		return false;
+	}
+	bool operator < (const Node & rhs) const{
+		if(node_id < rhs.getNodeId()) return true;
+		return false;
+	}
+
+	bool operator != (const Node & rhs) const{
+		return (node_id != rhs.getNodeId());
+	}
 };
 
 

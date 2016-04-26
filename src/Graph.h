@@ -99,6 +99,7 @@ public:
 
 	Vertex<N,R>* getVertex(const N &v) const;
 	Vertex<N,R>* getVertex(const int node_id) const;
+	Vertex<N,R>* getVertex(const string destination) const;
 	void resetIndegrees();
 	vector<Vertex<N,R>*> getSources() const;
 	int getNumCycles();
@@ -377,6 +378,22 @@ template <class N, class R>
 Vertex<N,R>* Graph<N,R>::getVertex(const N &v) const {
 	for(unsigned int i = 0; i < vertexSet.size(); i++)
 		if (vertexSet[i]->info == v) return vertexSet[i];
+	return NULL;
+}
+
+template <class N, class R>
+Vertex<N,R>* Graph<N,R>::getVertex(const int node_id) const{
+	for(unsigned int i = 0; i < vertexSet.size(); i++){
+		if(vertexSet[i]->getInfo().getNodeId() == node_id) return vertexSet[i];
+	}
+	return NULL;
+}
+
+template <class N, class R>
+Vertex<N,R>* Graph<N,R>::getVertex(const string destination) const{
+	for(unsigned int i = 0; i < vertexSet.size(); i++){
+		if(vertexSet[i]->getInfo().getHotelName() == destination) return vertexSet[i];
+	}
 	return NULL;
 }
 

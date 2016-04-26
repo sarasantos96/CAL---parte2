@@ -2,6 +2,9 @@
 #define SRC_AIRSHUTTLE_H_
 #include <iostream>
 #include <vector>
+#include "Graph.h"
+#include "Node.h"
+#include "Road.h"
 #include "Reservation.h"
 #include "Van.h"
 #include "Passenger.h"
@@ -27,7 +30,7 @@ public:
 	bool changePassengerName(string oldName, string newName);
 	void distributePassengers();
 	void setReservations(vector<Reservation> res);
-
+	void sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber);
 };
 
 
