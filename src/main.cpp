@@ -16,7 +16,7 @@ void diplayReservations() {
 	for(unsigned int i=0; i < r.size(); i++){
 		cout << "ID: "<< r[i].getId()<< "; Passenger:  "<<r[i].getPassenger().getName()<< " "<<r[i].getPassenger().getNif()
 				<<"; Arrival: "<<r[i].getDate().getHour()<<":"<<r[i].getDate().getMinutes()
-				<<"Destination: "<<r[i].getDestination()<< endl;
+				<<" Destination: "<<r[i].getDestination()<< endl;
 	}
 	mainMenu();
 }
@@ -30,6 +30,24 @@ void displayVans(){
 }
 
 void displayTrips(){
+	vector <Van> v = airShuttle.getVans();
+	for (unsigned int i=0; i< v.size(); i++){
+		cout<<"Van "<<v[i].getLPlate()<<endl;
+		vector < vector <string> > trips = v[i].getTrips();
+		vector < Date > dates= v[i].getD();
+		for(unsigned int j=0; j < trips.size(); j++){
+			cout<<dates[j].getHour()<<":"<<dates[j].getMinutes()<<"- ";
+			for(unsigned int k=0; k < trips[j].size(); k++){
+				if(k == trips[j].size() -1)
+					cout<<trips[j][k];
+				else
+					cout<<trips[j][k]<<"->";
+			}
+			cout<<endl;
+		}
+
+	}
+
 	mainMenu();
 }
 
@@ -144,7 +162,8 @@ int main(){
 	readReservations();
 	readVans();
 	airShuttle.distributePassengers();
-	airShuttle.sortDistributions(g,1);
-	//mainMenu();
+	for(unsigned int i=0; i < airShuttle.getVans().size(); i++ )
+		airShuttle.sortDistributions(g,i+1);
+	mainMenu();
 	return 0;
 }
