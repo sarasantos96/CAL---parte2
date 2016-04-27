@@ -9,16 +9,18 @@ Graph<Node,Road> g;
 GraphViewer *gv;
 
 void loadGraph(Graph<Node,Road> &g){
+
+	gv = new GraphViewer(600, 600, false);
+	gv->createWindow(600, 600);
+	gv->defineEdgeDashed(false);
+	gv->defineVertexColor("blue");
+	gv->defineEdgeColor("black");
+
 	readNodes(g);
 	vector<Road> roads = readRoads();
 	readSubRoads(g,roads);
 
-	/*gv = new GraphViewer(600, 600, true);
-	gv->createWindow(600, 600);
-	gv->defineEdgeDashed(true);
-	gv->defineVertexColor("blue");
-	gv->defineEdgeColor("black");*/
-
+	gv->rearrange();
 }
 
 Node findNode(Graph<Node,Road> & g, int node_id){
@@ -65,7 +67,14 @@ void readNodes(Graph<Node,Road> & g){
 		Node n(node_id, Point(x,y), Point(x_r,y_r), nome);
 
 		g.addVertex(n);
-		//gv->addNode(node_id,x,y);
+		gv->addNode(node_id,x,y);
+		gv->setVertexLabel(node_id,n.getHotelName());
+		if(nome != ""){
+			gv->setVertexIcon(node_id,"hotel.png");
+		}
+		if(node_id == 1){
+			gv->setVertexIcon(node_id,"aero.png");
+		}
 	}
 
 	infile.close();
@@ -127,10 +136,12 @@ void readSubRoads(Graph<Node,Road> &g, vector<Road> roads){
 		if(r.isIsTwoWay()){
 			g.addEdge(node_1,node_2,r,distance);
 			g.addEdge(node_2,node_1,r,distance);
+			gv->addEdge(road_id,node1_id,node2_id,EdgeType::UNDIRECTED);
 		}else{
 			g.addEdge(node_1,node_2,r,distance);
-			//gv->addEdge(road_id,node1_id,node2_id,0);
+			gv->addEdge(road_id,node1_id,node2_id,EdgeType::UNDIRECTED);
 		}
+
 	}
 
 	infile.close();
