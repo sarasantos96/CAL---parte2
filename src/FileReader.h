@@ -8,12 +8,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <algorithm>
+
 
 #include "Graph.h"
 #include "Node.h"
 #include "Road.h"
 #include "Subroad.h"
 #include "Point.h"
+#include "AirShuttle.h"
 
 using namespace std;
 
@@ -23,5 +26,7 @@ Road findRoad(vector<Road> r, int road_id);
 void readNodes(Graph<Node,Road> & g);
 vector<Road> readRoads();
 void readSubRoads(Graph<Node,Road> &g, vector<Road> roads);
+void readReservations(AirShuttle &airShuttle);
+void readVans(AirShuttle &airShuttle);
 
 #endif

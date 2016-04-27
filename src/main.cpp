@@ -1,12 +1,7 @@
 #include "main.h"
 #include "FileReader.h"
-#include <algorithm>
 
 using namespace std;
-
-#define RESERVATIONS "Reservations.txt"
-#define VANS "Vans.txt"
-
 
 AirShuttle airShuttle;
 
@@ -109,65 +104,6 @@ void mainMenu(){
 		break;
 	}
 }
-/**Reads all reservations from a file and loads them to the airShuttle
- *
- */
-void readReservations(){
-	ifstream infile;
-	string line;
-	infile.open(RESERVATIONS);
-	int id,Hour, Min, Day;
-	string name, destination,nif;
-	vector <Reservation> res;
-
-	while(getline(infile,line)){
-		stringstream linestream(line);
-		string data;
-
-		linestream >> id;
-		getline(linestream, data, ';');
-		getline(linestream, name, ';');
-		getline(linestream, nif, ';');
-		linestream >> Hour;
-		getline(linestream, data, ';');
-		linestream >> Min;
-		getline(linestream, destination, ';');
-		linestream >> destination;
-
-		Passenger p= Passenger(name,nif);
-		Date d= Date(Hour, Min);
-		Reservation r= Reservation(id,d,p,destination);
-		res.push_back(r);
-	}
-
-	sort(res.begin(),res.end());
-	airShuttle.setReservations(res);
-	infile.close();
-}
-/**Reads all vans from a file and loads them to the airShuttle
- *
- */
-void readVans(){
-	ifstream infile;
-	string line;
-	infile.open(VANS);
-
-	while(getline(infile,line)){
-		stringstream linestream(line);
-		stringstream linestream2(line);
-		string data;
-		string lp;
-		int cap;
-
-		getline(linestream, lp, ';');  // read up-to the first ; (discard ;).
-		getline(linestream2, data, ';');
-		linestream2 >> cap;
-
-		Van v= Van(lp,cap);
-		airShuttle.addVan(v);
-	}
-	infile.close();
-}
 
 /**Main Funtion
  *
@@ -176,8 +112,8 @@ int main(){
 	Graph<Node,Road> g;
 	loadGraph(g);
 	airShuttle = AirShuttle();
-	readReservations();
-	readVans();
+	readReservations(airShuttle);
+	readVans(airShuttle);
 	airShuttle.distributePassengers();
 	for(unsigned int i=0; i < airShuttle.getVans().size(); i++ )
 		airShuttle.sortDistributions(g,i+1);
