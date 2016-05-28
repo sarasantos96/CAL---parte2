@@ -208,10 +208,7 @@ void readReservations(AirShuttle &airShuttle, Graph<Node,Road> & graph){
 		string morada = "";
 		morada = findDestination(graph, destination);
 
-		cout << morada << endl;
-
-		//dá com destination não dá com morada
-		Reservation r = Reservation(id,d,p, destination);
+		Reservation r = Reservation(id,d,p, destination, morada);
 
 		res.push_back(r);
 	}

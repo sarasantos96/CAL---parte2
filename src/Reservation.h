@@ -13,9 +13,10 @@ private:
 	Date date;
 	Passenger passenger;
 	string destination;
+	string morada;
 public:
 	Reservation();
-	Reservation(int id, Date date, Passenger passenger, string destination);
+	Reservation(int id, Date date, Passenger passenger, string destination, string morada);
 	const Date& getArrival() const;
 	void setArrival(const Date& arrival);
 	const Date& getDate()const;
@@ -27,6 +28,8 @@ public:
 	int getPrice() const;
 	void setPrice(int price);
 	int getId() const;
+	string getMorada() const;
+	void setMorada(string morada);
 	bool operator ==(const Reservation &r2){
 		if(id == r2.getId())
 			return true;

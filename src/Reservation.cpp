@@ -11,7 +11,7 @@ Reservation:: Reservation(){}
  * @param passenger Passenger of reservations
  * @destination Passenger's destination
  */
-Reservation:: Reservation(int id,Date date, Passenger passenger, string destination) : id(id), date(date), passenger(passenger), destination(destination){
+Reservation:: Reservation(int id,Date date, Passenger passenger, string destination, string morada) : id(id), date(date), passenger(passenger), destination(destination), morada(morada){
 }
 /**Returns the date of reservation
  *
@@ -55,3 +55,7 @@ void Reservation:: setPassenger(const Passenger& passenger) {
 int Reservation:: getId() const{
 	return id;
 }
+
+string Reservation:: getMorada() const{ return this->morada;}
+
+void Reservation:: setMorada(string morada) {this->morada = morada;}
