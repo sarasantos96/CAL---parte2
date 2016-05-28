@@ -10,10 +10,11 @@ using namespace std;
 class Node{
 	unsigned int node_id;
 	string hotel;
+	string morada;
 	Point p_degree;
 	Point p_radian;
 public:
-	Node(int node_id, Point p_degree, Point p_radian, string hotel);
+	Node(int node_id, Point p_degree, Point p_radian, string hotel, string morada);
 
 	Point getPointDegree() const;
 	void setPointDegree(Point p_degree);
@@ -26,6 +27,9 @@ public:
 
 	string getHotelName() const;
 	void setHotelName(string hotel);
+
+	string getMorada() const;
+	void setMorada(string morada);
 
 	bool operator==(const Node& rhs) const{
 		if(node_id == rhs.getNodeId()) return true;

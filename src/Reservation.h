@@ -21,7 +21,7 @@ public:
 	const Date& getDate()const;
 	void setDate(Date date);
 	string getDestination() const;
-	void setDestination(const string& destination);
+	void setDestination(string destination);
 	const Passenger& getPassenger() const;
 	void setPassenger(const Passenger& passenger);
 	int getPrice() const;

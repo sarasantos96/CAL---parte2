@@ -7,7 +7,7 @@
  * @param p_radian
  * @param hotel
  */
-Node:: Node(int node_id, Point p_degree, Point p_radian, string hotel) : node_id(node_id), p_degree(p_degree), p_radian(p_radian), hotel(hotel){}
+Node:: Node(int node_id, Point p_degree, Point p_radian, string hotel, string morada) : node_id(node_id), p_degree(p_degree), p_radian(p_radian), hotel(hotel), morada(morada){}
 
 /**
  * Returns the Point in degrees
@@ -48,3 +48,7 @@ string Node:: getHotelName() const {return this->hotel;}
  * @param new hotel name
  */
 void Node:: setHotelName(string hotel) {this->hotel = hotel;}
+
+string Node:: getMorada() const{ return this->morada;}
+
+void Node:: setMorada(string morada) {this->morada = morada;}

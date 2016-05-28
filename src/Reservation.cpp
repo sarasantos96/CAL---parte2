@@ -11,11 +11,7 @@ Reservation:: Reservation(){}
  * @param passenger Passenger of reservations
  * @destination Passenger's destination
  */
-Reservation:: Reservation(int id,Date date, Passenger passenger, string destination){
-	this->id= id;
-	this->date=date;
-	this->passenger= passenger;
-	this->destination=destination;
+Reservation:: Reservation(int id,Date date, Passenger passenger, string destination) : id(id), date(date), passenger(passenger), destination(destination){
 }
 /**Returns the date of reservation
  *
@@ -38,7 +34,7 @@ string Reservation:: getDestination() const {
 /**Modifies the destination
  *
  */
-void Reservation:: setDestination(const string& destinantion) {
+void Reservation:: setDestination(string destination) {
 	this->destination = destination;
 }
 /**Returns the passenger

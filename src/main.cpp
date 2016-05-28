@@ -237,7 +237,7 @@ int main(){
 	Graph<Node,Road> g;
 	loadGraph(g);
 	airShuttle = AirShuttle();
-	readReservations(airShuttle);
+	readReservations(airShuttle, g);
 	readVans(airShuttle);
 	airShuttle.distributePassengers();
 	for(unsigned int i=0; i < airShuttle.getVans().size(); i++ )

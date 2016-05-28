@@ -7,6 +7,8 @@
 #define RESERVATIONS 	"Reservations.txt"
 #define VANS 			"Vans.txt"
 
+using namespace std;
+
 Graph<Node,Road> g;
 GraphViewer *gv;
 
@@ -36,8 +38,17 @@ Node findNode(Graph<Node,Road> & g, int node_id){
 		if(node_id == g.getVertexSet()[i]->getInfo().getNodeId())
 			return g.getVertexSet()[i]->getInfo();
 	}
-	return Node(-1,Point(0,0),Point(0,0), "");
+	return Node(-1,Point(0,0),Point(0,0), "", "");
 }
+
+string findDestination(Graph<Node,Road> graph, string destination){
+	for(int i = 0; i < graph.getNumVertex(); i++){
+		if(destination == graph.getVertexSet()[i]->getInfo().getHotelName())
+			return graph.getVertexSet()[i]->getInfo().getMorada();
+		}
+	return "";
+}
+
 /**Finds a Road in a vector of Roads by it's ID
  * @param r vector of Roads
  * @param road_id ID of the road being searched
@@ -64,6 +75,7 @@ void readNodes(Graph<Node,Road> & g){
 		unsigned int node_id;
 		double x, y, x_r, y_r;
 		string nome = "";
+		string morada = "";
 
 		linestream >> node_id;
 		getline(linestream, data, ';');  // read up-to the first ; (discard ;).
@@ -76,8 +88,8 @@ void readNodes(Graph<Node,Road> & g){
 		linestream >> y_r;
 		getline(linestream, data, ';');
 		linestream >> nome;
-
-		Node n(node_id, Point(x,y), Point(x_r,y_r), nome);
+		linestream >> morada;
+		Node n(node_id, Point(x,y), Point(x_r,y_r), nome, morada);
 
 		g.addVertex(n);
 		gv->addNode(node_id,x,y);
@@ -167,17 +179,18 @@ void readSubRoads(Graph<Node,Road> &g, vector<Road> roads){
 /**Reads all reservations from a file and loads them to the airShuttle
  *
  */
-void readReservations(AirShuttle &airShuttle){
+void readReservations(AirShuttle &airShuttle, Graph<Node,Road> & graph){
 	ifstream infile;
 	string line;
 	infile.open(RESERVATIONS);
-	int id,Hour, Min, Day;
-	string name, destination,nif;
 	vector <Reservation> res;
 
 	while(getline(infile,line)){
 		stringstream linestream(line);
 		string data;
+
+		int id,Hour, Min;
+		string name = "", destination = "",nif = "";
 
 		linestream >> id;
 		getline(linestream, data, ';');
@@ -186,12 +199,20 @@ void readReservations(AirShuttle &airShuttle){
 		linestream >> Hour;
 		getline(linestream, data, ';');
 		linestream >> Min;
-		getline(linestream, destination, ';');
+		getline(linestream, data, ';');
 		linestream >> destination;
 
 		Passenger p= Passenger(name,nif);
 		Date d= Date(Hour, Min);
-		Reservation r= Reservation(id,d,p,destination);
+
+		string morada = "";
+		morada = findDestination(graph, destination);
+
+		cout << morada << endl;
+
+		//dá com destination não dá com morada
+		Reservation r = Reservation(id,d,p, destination);
+
 		res.push_back(r);
 	}
 

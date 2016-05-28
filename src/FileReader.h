@@ -23,10 +23,11 @@ using namespace std;
 void loadGraph(Graph<Node,Road> & g);
 Node findNode(Graph<Node,Road> & g, int node_id);
 Road findRoad(vector<Road> r, int road_id);
+string findDestination(Graph<Node,Road> g, string destination);
 void readNodes(Graph<Node,Road> & g);
 vector<Road> readRoads();
 void readSubRoads(Graph<Node,Road> &g, vector<Road> roads);
-void readReservations(AirShuttle &airShuttle);
+void readReservations(AirShuttle &airShuttle, Graph<Node,Road> & g);
 void readVans(AirShuttle &airShuttle);
 
 #endif
