@@ -219,3 +219,4 @@ void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber)
 		vans[vanNumber-1].setSortedTrips(final);
 	}
 }
+

@@ -34,6 +34,8 @@ public:
 	void addReservations(vector<Reservation> r);
 	void setSortedTrips(vector<string> trip);
 	vector<vector<string> > getTrips() const;
+	int passengerExists(string passenger);
+	Reservation getReservationByPassenger(string name);
 };
 
 

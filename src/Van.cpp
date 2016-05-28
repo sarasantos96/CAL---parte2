@@ -85,3 +85,32 @@ void Van:: setSortedTrips(vector<string> trip){
 vector<vector<string> > Van::getTrips() const{
 	return trips;
 }
+
+int Van:: passengerExists(string passenger){
+	int index = -1;
+
+	for(int i = 0; i < reservations.size();i++){
+		vector<Reservation> group = reservations[i];
+		for(int j = 0; j < group.size(); j++){
+			if(group[j].getPassenger().getName() == passenger){
+				index = i;
+			}
+		}
+	}
+
+	return index;
+}
+
+Reservation Van:: getReservationByPassenger(string name){
+	Reservation r;
+
+	for(int i = 0; i < reservations.size();i++){
+		vector<Reservation> group = reservations[i];
+		for(int j = 0; j < group.size(); j++){
+			if(group[j].getPassenger().getName() == name){
+				r = group[j];
+			}
+		}
+	}
+	return r;
+}

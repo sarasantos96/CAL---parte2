@@ -20,9 +20,14 @@ public:
 		return false;
 	}
 	bool operator <(const Date &d2) const{
-		if((hour != d2.getHour() )&& (minutes != d2.getMinutes()))
-			return false;
-		return true;
+		if(hour < d2.getHour())
+			return true;
+		else if(hour == d2.getHour()){
+			if(minutes < d2.getMinutes())
+				return true;
+			else return false;
+		}
+		return false;
 	}
 };
 
