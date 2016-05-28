@@ -31,6 +31,9 @@ public:
 	void distributePassengers();
 	void sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber);
 	vector<Reservation> sortTrips(vector<Node> path, Date pDate);
+	void removePassengerFromVan(Passenger passenger, int van, int index);
+	void setVans(const vector<Van>& vans);
+	void addPassengerToVan(Reservation passengerReservation, int van, int index);
 };
 
 

@@ -36,6 +36,9 @@ public:
 	vector<vector<string> > getTrips() const;
 	int passengerExists(string passenger);
 	Reservation getReservationByPassenger(string name);
+	void removePassenger(Passenger passenger, int index);
+	void addPassenger(Reservation passengerReservation, int index);
+	bool isFull(int index);
 };
 
 

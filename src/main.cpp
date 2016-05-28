@@ -113,9 +113,9 @@ void travelWithFriend(){
 
 	//cin.ignore(10,'\n');
 	Van van1, van2;
-	Passenger passenger, passengerFriend;
 	Date passengerDate, friendDate;
 	Reservation passengerReservation, friendReservation;
+	bool change= false;
 
 	//Passenger information
 	int vanIndex = -1;
@@ -135,6 +135,7 @@ void travelWithFriend(){
 	}else{
 		cout<<"Your name is not on the passenger list \n";
 	}
+
 	//Friend information
 	int friendVanIndex = -1;
 	int friendIndex =-1;
@@ -154,46 +155,32 @@ void travelWithFriend(){
 		cout<<"Your friend's name is not on the passenger list \n";
 	}
 
-	cout<<passengerDate.getHour()<<";"<<passengerDate.getMinutes()<<endl;
-	cout<<friendDate.getHour()<<";"<<friendDate.getMinutes()<<endl;
-	//Checks if they already in the same van
-	if(van1.getLPlate()==van2.getLPlate()){
-		if(passengerDate.getHour() == friendDate.getHour() && passengerDate.getMinutes() == friendDate.getMinutes()){
+	if(van1.getLPlate()==van2.getLPlate() && passengerDate == friendDate){
 			cout<<"You're already traveling with him \n";
-		}
-		else{
-			cout<<"You're in the same Van! I'm going to try \n";
-			int passengerMinutes = (passengerReservation.getDate().getHour() * 60) + passengerReservation.getDate().getMinutes();
-			int friendMinutes = (friendReservation.getDate().getHour() * 60) + friendReservation.getDate().getMinutes();
+	}else{
+		int passengerMinutes = (passengerReservation.getDate().getHour() * 60) + passengerReservation.getDate().getMinutes();
+		int friendMinutes = (friendReservation.getDate().getHour() * 60) + friendReservation.getDate().getMinutes();
 
-			if(friendMinutes - passengerMinutes > 0){
-				cout<<"Your friends arrives after you."<<endl;
-			}else if(friendMinutes - passengerMinutes < 0){
-				if( abs(friendMinutes - passengerMinutes) <= 30){
-					cout<<"Your friend arrives before you. We can wait \n";
-				}else{
-					cout<<"Your friend arrives before you. We can't wait \n";
-				}
+		if(friendMinutes - passengerMinutes > 0){
+			cout<<"Your friends arrives after you.You wait for him"<<endl;
+			change = true;
+		}else if(friendMinutes - passengerMinutes < 0){
+			if( abs(friendMinutes - passengerMinutes) <= 30){
+				cout<<"Your friend arrives before you. We can wait \n";
+				change = true;
+			}else{
+				cout<<"Your friend arrives before you. We can't wait \n";
 			}
 		}
-
-	}else{
-		cout<<"I'm going to try \n";
 	}
 
-	mainMenu();
-}
-
-void showDates(){
-
-	for(int j = 0 ; j < airShuttle.getVans().size(); j++ ){
-		Van van = airShuttle.getVans()[j];
-		vector <Date> dates = van.getD();
-
-		for(int i= 0; i < dates.size() ; i++){
-			cout<<dates[i].getHour()<<":"<<dates[i].getMinutes()<<";";
-		}
-		cout<<endl;
+	if(change){
+		cout<<"Removing from your van... \n";
+		airShuttle.removePassengerFromVan(passengerReservation.getPassenger(),vanIndex, index);
+		airShuttle.addPassengerToVan(passengerReservation, friendVanIndex,friendIndex);
+		cout<<"Your reservation has been successfully changed \n";
+	}else{
+		cout<<"There's no seats in is van \n";
 	}
 
 	mainMenu();
@@ -209,7 +196,6 @@ void mainMenu(){
 	cout<<"4- Show trips \n";
 	cout<<"5- Consult passenger reservation \n";
 	cout<<"6- Travel with friend \n";
-	cout<<"8- Show dates \n";
 	cout<<"7- Exit \n";
 
 	int option;
@@ -234,9 +220,6 @@ void mainMenu(){
 		break;
 	case 6:
 		travelWithFriend();
-		break;
-	case 8:
-		showDates();
 		break;
 	case 7:
 		return;

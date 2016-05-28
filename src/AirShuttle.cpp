@@ -220,3 +220,23 @@ void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber)
 	}
 }
 
+void AirShuttle :: setVans(const vector<Van>& vans) {
+		this->vans = vans;
+	}
+
+void AirShuttle :: removePassengerFromVan(Passenger passenger, int van, int index){
+	vector<Van> copy = vans;
+
+	copy[van].removePassenger(passenger,index);
+	setVans(copy);
+}
+
+void AirShuttle :: addPassengerToVan(Reservation passengerReservation, int van, int index){
+	vector <Van> copy = vans;
+
+	copy[van].addPassenger(passengerReservation,index);
+	setVans(copy);
+
+}
+
+

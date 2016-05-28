@@ -114,3 +114,36 @@ Reservation Van:: getReservationByPassenger(string name){
 	}
 	return r;
 }
+
+void Van :: removePassenger(Passenger passenger, int index){
+	int i = 0;
+	vector<vector<Reservation> > copy = reservations;
+	//Search for passenger
+	while(i < copy[index].size()){
+		if(passenger.getName() == copy[index][i].getPassenger().getName()){
+			copy[index].erase(copy[index].begin() + i);
+			break;
+		}
+		i++;
+	}
+
+	reservations.clear();
+	setReservations(copy);
+}
+
+void Van:: addPassenger(Reservation passengerReservation, int index){
+	vector<vector<Reservation> > copy = reservations;
+
+	copy[index].push_back(passengerReservation);
+
+	reservations.clear();
+	setReservations(copy);
+}
+
+bool Van :: isFull(int index){
+	if(nPassengers - reservations[index].size() > 0)
+		return true;
+
+	return false;
+}
+
