@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Reservation.h"
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -39,6 +40,11 @@ public:
 	void removePassenger(Passenger passenger, int index);
 	void addPassenger(Reservation passengerReservation, int index);
 	bool isFull(int index);
+	Date getDeparture(string passenger);
+	int getMostAproxDist(string passenger);
+	int getMostAproxPassenger(string passenger);
+	Date getIndexDate(int index);
+	Reservation getIndexReservation(int index, string nifPassenger);
 };
 
 

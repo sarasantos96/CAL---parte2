@@ -239,4 +239,28 @@ void AirShuttle :: addPassengerToVan(Reservation passengerReservation, int van, 
 
 }
 
+int AirShuttle:: vanAproxPassenger(string passenger){
+	int vanIndex = -1;
+	int dist = passenger.length();
 
+	for(unsigned int i = 0; i< vans.size(); i++){
+		int temp = vans[i].getMostAproxDist(passenger);
+		if(temp < dist ){
+			dist = temp;
+			vanIndex = i;
+		}
+	}
+	cout<<vanIndex<<endl;
+	return vanIndex;
+}
+
+int AirShuttle :: getPassengerVan(string passenger){
+	int index = -1;
+	int vanIndex = vanAproxPassenger(passenger);
+
+	if(vanIndex != -1){
+		index = vans[vanIndex].getMostAproxPassenger(passenger);
+	}
+
+	return index;
+}

@@ -14,7 +14,7 @@ void diplayReservations() {
 	for(unsigned int i=0; i < r.size(); i++){
 		cout << "ID: "<< r[i].getId()<< "; Passenger:  "<<r[i].getPassenger().getName()<< " "<<r[i].getPassenger().getNif()
 				<<"; Arrival: "<<r[i].getDate().getHour()<<":"<<r[i].getDate().getMinutes()
-				<<" Destination: "<<r[i].getDestination()<< endl;
+				<<" Hotel: "<<r[i].getDestination()<<"Destination: "<<r[i].getMorada()<< endl;
 	}
 	mainMenu();
 }
@@ -77,25 +77,18 @@ void consultReservation(){
 	cin.ignore(10,'\n');
 	getline(cin,name);
 
-	int vanIndex = -1;
-	int index =-1;
+	int index = airShuttle.vanAproxPassenger(name);
 
-	for(int i = 0; i < airShuttle.getVans().size(); i++){
-		Van van =  airShuttle.getVans()[i];
-		if(van.passengerExists(name) != -1){
-			index = van.passengerExists(name);
-			vanIndex = i;
-			break;
-		}
-	}
-
-	if(vanIndex == -1){
+	if(index == -1){
 		cout<<"No reservations in passenger name \n";
 	}else{
-		Van van = airShuttle.getVans()[vanIndex];
+		Van van = airShuttle.getVans()[index];
+		int subIndex = van.getMostAproxDist(name);
+		Date date = van.getIndexDate(subIndex);
+		//Reservation r ;
+		//cout<<"Name: "<<r.getPassenger().getName()<<endl;
 		cout<<"Van: "<<van.getLPlate()<<endl;
-		Date date = van.getD()[index];
-		cout<<"Date:"<<date.getHour()<<":"<<date.getMinutes()<<endl;
+		cout<<"Hour of departure: "<<date.getHour()<<":"<<date.getMinutes()<<endl;
 	}
 
 	mainMenu();
@@ -128,6 +121,7 @@ void travelWithFriend(){
 			break;
 		}
 	}
+
 	if(vanIndex != -1){
 		van1 = airShuttle.getVans()[vanIndex];
 		passengerDate = van1.getD()[index];
@@ -180,7 +174,7 @@ void travelWithFriend(){
 		airShuttle.addPassengerToVan(passengerReservation, friendVanIndex,friendIndex);
 		cout<<"Your reservation has been successfully changed \n";
 	}else{
-		cout<<"There's no seats in is van \n";
+		cout<<"You're reservation hasn't been changed \n";
 	}
 
 	mainMenu();

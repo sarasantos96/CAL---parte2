@@ -2,6 +2,7 @@
 #define SRC_AIRSHUTTLE_H_
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "Graph.h"
 #include "Node.h"
 #include "Road.h"
@@ -34,6 +35,9 @@ public:
 	void removePassengerFromVan(Passenger passenger, int van, int index);
 	void setVans(const vector<Van>& vans);
 	void addPassengerToVan(Reservation passengerReservation, int van, int index);
+	int vanAproxPassenger(string passenger);
+	int getPassengerVan(string passenger);
+	void getPassengerInfo(Van &van, Reservation &r, Date &date);
 };
 
 
