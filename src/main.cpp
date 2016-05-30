@@ -14,7 +14,7 @@ void diplayReservations() {
 	for(unsigned int i=0; i < r.size(); i++){
 		cout << "ID: "<< r[i].getId()<< "; Passenger:  "<<r[i].getPassenger().getName()<< " "<<r[i].getPassenger().getNif()
 				<<"; Arrival: "<<r[i].getDate().getHour()<<":"<<r[i].getDate().getMinutes()
-				<<" Hotel: "<<r[i].getDestination()<<"Destination: "<<r[i].getMorada()<< endl;
+				<<" Hotel: "<<r[i].getDestination()<<" Destination: "<<r[i].getMorada()<< endl;
 	}
 	mainMenu();
 }
@@ -70,6 +70,9 @@ void displayGroups(){
 	}
 	mainMenu();
 }
+/**Consult a reservation by passenger name
+ *
+ */
 void consultReservation(){
 	//Name of passenger
 	string name;
@@ -77,23 +80,21 @@ void consultReservation(){
 	cin.ignore(10,'\n');
 	getline(cin,name);
 
+
 	int index = airShuttle.vanAproxPassenger(name);
 
 	if(index == -1){
 		cout<<"No reservations in passenger name \n";
 	}else{
 		Van van = airShuttle.getVans()[index];
-		int subIndex = van.getMostAproxDist(name);
-		Date date = van.getIndexDate(subIndex);
-		//Reservation r ;
-		//cout<<"Name: "<<r.getPassenger().getName()<<endl;
 		cout<<"Van: "<<van.getLPlate()<<endl;
-		cout<<"Hour of departure: "<<date.getHour()<<":"<<date.getMinutes()<<endl;
 	}
 
 	mainMenu();
 }
-
+/**Modify a reservation to travel with a friend
+ *
+ */
 void travelWithFriend(){
 	string name, friendName;
 
@@ -109,6 +110,7 @@ void travelWithFriend(){
 	Date passengerDate, friendDate;
 	Reservation passengerReservation, friendReservation;
 	bool change= false;
+	bool passengerExists, friendExists;
 
 	//Passenger information
 	int vanIndex = -1;
@@ -126,8 +128,10 @@ void travelWithFriend(){
 		van1 = airShuttle.getVans()[vanIndex];
 		passengerDate = van1.getD()[index];
 		passengerReservation = van1.getReservationByPassenger(name);
+		passengerExists= true;
 	}else{
 		cout<<"Your name is not on the passenger list \n";
+		passengerExists= false;
 	}
 
 	//Friend information
@@ -145,9 +149,14 @@ void travelWithFriend(){
 		van2 = airShuttle.getVans()[friendVanIndex];
 		friendDate = van2.getD()[index];
 		friendReservation = van2.getReservationByPassenger(friendName);
+		passengerExists= true;
 	}else{
 		cout<<"Your friend's name is not on the passenger list \n";
+		passengerExists= false;
 	}
+
+	if(!passengerExists || !friendExists)
+		mainMenu();
 
 	if(van1.getLPlate()==van2.getLPlate() && passengerDate == friendDate){
 			cout<<"You're already traveling with him \n";
@@ -179,6 +188,27 @@ void travelWithFriend(){
 
 	mainMenu();
 }
+/**Show all reservation of passenger traveling to a adress
+ *
+ */
+void getPassengerToAdress(){
+	string adress;
+	cin.ignore(10, '\n');
+	cout<<"Adress: ";
+	getline(cin, adress);
+
+	vector<Reservation> r = airShuttle.reservationsToAdress(adress);
+	if(r.size() == 0)
+		cout<<"No passengers traveling to that adress \n";
+	else
+		for(unsigned int i=0; i < r.size(); i++){
+			cout << "ID: "<< r[i].getId()<< "; Passenger:  "<<r[i].getPassenger().getName()<< " "<<r[i].getPassenger().getNif()
+									<<"; Arrival: "<<r[i].getDate().getHour()<<":"<<r[i].getDate().getMinutes()
+									<<" Hotel: "<<r[i].getDestination()<<" Destination: "<<r[i].getMorada()<< endl;
+		}
+
+	mainMenu();
+}
 
 /**Main menu Function
  *
@@ -190,7 +220,8 @@ void mainMenu(){
 	cout<<"4- Show trips \n";
 	cout<<"5- Consult passenger reservation \n";
 	cout<<"6- Travel with friend \n";
-	cout<<"7- Exit \n";
+	cout<<"7- Get Passengers traveling to adress \n";
+	cout<<"8- Exit \n";
 
 	int option;
 
@@ -216,6 +247,9 @@ void mainMenu(){
 		travelWithFriend();
 		break;
 	case 7:
+		getPassengerToAdress();
+		break;
+	case 8:
 		return;
 	default:
 		cout<<"Invalid option. Insert new one \n";

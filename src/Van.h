@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Reservation.h"
 #include <vector>
-#include <algorithm>
+#include "tools.h"
 
 using namespace std;
 
@@ -42,7 +42,7 @@ public:
 	bool isFull(int index);
 	Date getDeparture(string passenger);
 	int getMostAproxDist(string passenger);
-	int getMostAproxPassenger(string passenger);
+	//int getMostAproxPassenger(string passenger);
 	Date getIndexDate(int index);
 	Reservation getIndexReservation(int index, string nifPassenger);
 };

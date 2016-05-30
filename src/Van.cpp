@@ -1,4 +1,5 @@
 #include "Van.h"
+#include "tools.h"
 
 using namespace std;
 /**Construtor of class Van
@@ -86,42 +87,9 @@ vector<vector<string> > Van::getTrips() const{
 	return trips;
 }
 
-void pre_kmp(string pattern, vector<int> & prefix)
-{
-	int m=pattern.length();
-	prefix[0]=-1;
-	int k=-1;
-	for (int q=1; q<m; q++) {
-		while (k>-1 && pattern[k+1]!=pattern[q])
-			k = prefix[k];
-		if (pattern[k+1]==pattern[q]) k=k+1;
-		prefix[q]=k;
-	}
-}
-
-int kmp(string text, string pattern)
-{
-	int num=0;
-	int m=pattern.length();
-	vector<int> prefix(m);
-	pre_kmp(pattern, prefix);
-
-	int n=text.length();
-
-	int q=-1;
-	for (int i=0; i<n; i++) {
-		while (q>-1 && pattern[q+1]!=text[i])
-			q=prefix[q];
-		if (pattern[q+1]==text[i])
-			q++;
-		if (q==m-1) {
-			num++;
-			q=prefix[q];
-		}
-	}
-	return num;
-}
-
+/**Returns the index of passenger if exists, if not return -1
+ * @param passenger name of the passenger
+ */
 int Van:: passengerExists(string passenger){
 	int index = -1;
 
@@ -137,6 +105,9 @@ int Van:: passengerExists(string passenger){
 	return index;
 }
 
+/**Returns the reservation of the passenger
+ * @param name name of the passenger
+ */
 Reservation Van:: getReservationByPassenger(string name){
 	Reservation r;
 
@@ -150,7 +121,9 @@ Reservation Van:: getReservationByPassenger(string name){
 	}
 	return r;
 }
-
+/**Removes a passenger from the van
+ * @param index group of the passenger
+ */
 void Van :: removePassenger(Passenger passenger, int index){
 	int i = 0;
 	vector<vector<Reservation> > copy = reservations;
@@ -166,7 +139,10 @@ void Van :: removePassenger(Passenger passenger, int index){
 	reservations.clear();
 	setReservations(copy);
 }
-
+/**Adds a passenger to the van
+ * @param passengerReservation reservation of the passenger
+ * @param index group to add the passenger
+ */
 void Van:: addPassenger(Reservation passengerReservation, int index){
 	vector<vector<Reservation> > copy = reservations;
 
@@ -175,60 +151,43 @@ void Van:: addPassenger(Reservation passengerReservation, int index){
 	reservations.clear();
 	setReservations(copy);
 }
-
+/**Checks if the van is full in a given group
+ * @param index group
+ */
 bool Van :: isFull(int index){
 	if(nPassengers - reservations[index].size() > 0)
 		return true;
 
 	return false;
 }
-
+/**Gets the date that the van leaves
+ * @param passenger name of the passenger being searched
+ */
 Date Van:: getDeparture(string passenger){
 	int index = passengerExists(passenger);
 
 	return dates[index];
 }
-
-int editDistance(string pattern, string text)
-{
-	int n=text.length();
-	vector<int> d(n+1);
-	int old,neww;
-	for (int j=0; j<=n; j++)
-		d[j]=j;
-	int m=pattern.length();
-	for (int i=1; i<=m; i++) {
-		old = d[0];
-		d[0]=i;
-		for (int j=1; j<=n; j++) {
-			if (pattern[i-1]==text[j-1]) neww = old;
-			else {
-				neww = min(old,d[j]);
-				neww = min(neww,d[j-1]);
-				neww = neww +1;
-			}
-			old = d[j];
-			d[j] = neww;
-		}
-	}
-	return d[n];
-}
-
+/**Returns the most approximate passenger with a given name
+ * @param name of the passenger
+ */
 int Van:: getMostAproxDist(string passenger){
-	int num=passenger.length();
+	int num=editDistance(passenger, reservations[0][0].getPassenger().getName());
+	int index=0;
 
-	for(int i=0 ; i < reservations.size(); i++) {
-		for(int j = 0; j < reservations[i].size(); j++){
+	for(int i=1 ; i < reservations.size(); i++) {
+		for(int j = 1; j < reservations[i].size(); j++){
 			string nametemp = reservations[i][j].getPassenger().getName();
 			int numtemp = editDistance(passenger,nametemp);
-			if(numtemp < num || num == -1){
+			if(numtemp < num){
 				num = numtemp;
+
 			}
 		}
 	}
 	return num;
 }
-
+/*
 int Van:: getMostAproxPassenger(string passenger){
 	int num=passenger.length();
 	int index =-1;
@@ -245,11 +204,17 @@ int Van:: getMostAproxPassenger(string passenger){
 		}
 		return index;
 }
-
+*/
+/**Returns the date of a group
+ * @param index index of the group
+ */
 Date Van:: getIndexDate(int index){
 	return dates[index];
 }
-
+/**Returns the reservation of a passenger
+ * @param index group of the passenger
+ * @param nifPassenger NIF of the passenger being searched
+ */
 Reservation Van:: getIndexReservation(int index, string nifPassenger){
 	Reservation r;
 

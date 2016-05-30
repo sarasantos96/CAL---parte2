@@ -219,18 +219,29 @@ void AirShuttle:: sortDistributions(Graph<Node,Road> &g, unsigned int vanNumber)
 		vans[vanNumber-1].setSortedTrips(final);
 	}
 }
-
+/**Changes vector vans to a new vector
+ * @param vans new vector of vans
+ */
 void AirShuttle :: setVans(const vector<Van>& vans) {
-		this->vans = vans;
-	}
+	this->vans = vans;
+}
 
+/**Removes a passenger from a van
+ * @param passenger passager being remove
+ * @van index from passenger van
+ * @index group of passenger in the van
+ */
 void AirShuttle :: removePassengerFromVan(Passenger passenger, int van, int index){
 	vector<Van> copy = vans;
 
 	copy[van].removePassenger(passenger,index);
 	setVans(copy);
 }
-
+/**Adds a passenger to a new van
+ * @param passengerReservation reservation of passenger being added
+ * @param van index of the van being added
+ * @param index group to add the new passenger
+ */
 void AirShuttle :: addPassengerToVan(Reservation passengerReservation, int van, int index){
 	vector <Van> copy = vans;
 
@@ -238,22 +249,24 @@ void AirShuttle :: addPassengerToVan(Reservation passengerReservation, int van, 
 	setVans(copy);
 
 }
-
+/**Returns the van index and the goup index of the most approximate passenger
+ *@param passenger name being searched
+ */
 int AirShuttle:: vanAproxPassenger(string passenger){
-	int vanIndex = -1;
-	int dist = passenger.length();
+	int vanIndex = 0;
+	int dist = vans[0].getMostAproxDist(passenger);
 
-	for(unsigned int i = 0; i< vans.size(); i++){
+	for(unsigned int i = 1; i< vans.size(); i++){
 		int temp = vans[i].getMostAproxDist(passenger);
 		if(temp < dist ){
 			dist = temp;
 			vanIndex = i;
 		}
 	}
-	cout<<vanIndex<<endl;
+
 	return vanIndex;
 }
-
+/*
 int AirShuttle :: getPassengerVan(string passenger){
 	int index = -1;
 	int vanIndex = vanAproxPassenger(passenger);
@@ -263,4 +276,17 @@ int AirShuttle :: getPassengerVan(string passenger){
 	}
 
 	return index;
+}*/
+/**Return all the reservations with a certain destination
+ * @param adress destination being searched
+ */
+vector<Reservation> AirShuttle:: reservationsToAdress(string adress){
+	vector<Reservation> r;
+
+	for(unsigned int i=0; i < reservations.size(); i++){
+		if(kmp(reservations[i].getMorada(), adress) != 0){
+			r.push_back(reservations[i]);
+		}
+	}
+	return r;
 }

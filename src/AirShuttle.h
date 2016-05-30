@@ -9,6 +9,7 @@
 #include "Reservation.h"
 #include "Van.h"
 #include "Passenger.h"
+#include "tools.h"
 
 using namespace std;
 
@@ -38,6 +39,7 @@ public:
 	int vanAproxPassenger(string passenger);
 	int getPassengerVan(string passenger);
 	void getPassengerInfo(Van &van, Reservation &r, Date &date);
+	vector<Reservation> reservationsToAdress(string adress);
 };
 
 
